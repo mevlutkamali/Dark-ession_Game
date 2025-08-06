@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dark$ession_Desktop</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body style="background-image: url('./Image/desktop-walpaper.png');">
+  <div class="desktop" id="desktop">
+    <div class="icon" style="top:20px; left:20px;" onclick="openWindow('computerWindow')" draggable="true" ondragstart="drag(event)">
+      <img src="./Image/computer-icon.png" alt="Bilgisayar" />
+      <span>Bilgisayar</span>
+    </div>
+
+    <div class="icon" style="top:20px; left:120px;" onclick="openWindow('terminalWindow')" draggable="true" ondragstart="drag(event)">
+      <img src="./Image/terminal-icon.png" alt="Terminal" />
+      <span>Terminal</span>
+    </div>
+
+    <div class="icon" style="top:20px; left:220px;" onclick="openWindow('trashWindow')" draggable="true" ondragstart="drag(event)">
+      <img src="./Image/trash-icon.png" alt="Çöp Kutusu" />
+      <span>Çöp Kutusu</span>
+    </div>
+
+    <div class="icon" style="top:120px; left:20px;" onclick="openWindow('confWindow')" draggable="true" ondragstart="drag(event)">
+      <img src="./Image/file-icon.png" alt="settings.conf" />
+      <span>settings.conf</span>
+    </div>
+
+    <div class="icon" style="top:120px; left:120px;" onclick="openWindow('readmeWindow')" draggable="true" ondragstart="drag(event)">
+      <img src="./Image/txt-icon.png" alt="readme.txt" />
+      <span>readme.txt</span>
+    </div>
+
+    <div class="icon" style="top:120px; left:220px;" onclick="openWindow('notesWindow')" draggable="true" ondragstart="drag(event)">
+      <img src="./Image/txt-icon.png" alt="notlar.txt" />
+      <span>notlar.txt</span>
+    </div>
+  </div>
+
+  <div id="contextMenu" class="context-menu" style="display:none;">
+    <ul>
+      <li onclick="alert('Yeni dosya oluştur')">📝 Yeni Dosya</li>
+      <li onclick="alert('Yenile')">🔄 Yenile</li>
+    </ul>
+  </div>
+
+  <div id="taskbar">
+    <img class="start-logo" src="./Image/Panda_Logo.png" alt="Başlat" />
+    <span>Dark$ession OS</span>
+  </div>
+
+  <!-- Pencereler -->
+  <div id="computerWindow" class="window" style="display:none;">
+    <div class="window-header">
+      <span>Bilgisayar</span>
+      <button onclick="closeWindow('computerWindow')">X</button>
+    </div>
+    <div class="window-body">🖥 Bu, sistem bilgisayarıdır.</div>
+  </div>
+
+  <div id="terminalWindow" class="window" style="display:none;">
+    <div class="window-header">
+      <span>Terminal</span>
+      <button onclick="closeWindow('terminalWindow')">X</button>
+    </div>
+    <div class="window-body">
+      <div class="terminal">
+        <div id="output">user@linux:~$</div>
+        <div class="input-line">
+          <input type="text" id="commandInput" autofocus autocomplete="off" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="trashWindow" class="window" style="display:none;">
+    <div class="window-header">
+      <span>Çöp Kutusu</span>
+      <button onclick="closeWindow('trashWindow')">X</button>
+    </div>
+    <div class="window-body">♻️ Çöp kutusu şu an boş.</div>
+  </div>
+
+  <div id="confWindow" class="window" style="display:none;">
+    <div class="window-header">
+      <span>settings.conf</span>
+      <button onclick="closeWindow('confWindow')">X</button>
+    </div>
+    <div class="window-body">
+      config.user=DarkSession<br />
+      system.dark_mode=true
+    </div>
+  </div>
+
+  <div id="readmeWindow" class="window" style="display:none;">
+    <div class="window-header">
+      <span>readme.txt</span>
+      <button onclick="closeWindow('readmeWindow')">X</button>
+    </div>
+    <div class="window-body">
+      Merhaba! Bu oyun terminal becerilerini test eder.
+    </div>
+  </div>
+
+  <div id="notesWindow" class="window" style="display:none;">
+    <div class="window-header">
+      <span>notlar.txt</span>
+      <button onclick="closeWindow('notesWindow')">X</button>
+    </div>
+    <div class="window-body">
+      - Komutları öğren<br />
+      - Dizinleri keşfet<br />
+      - Root olmayı unutma
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

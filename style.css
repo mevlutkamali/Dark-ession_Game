@@ -1,0 +1,152 @@
+/* Genel sayfa ayarları */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: monospace;
+  background: url("images/wallpaper.png") no-repeat center center fixed;
+  background-size: cover;
+  color: #0f0;
+  user-select: none;
+  background-image: url('resim-yolu.jpg');
+  background-repeat: no-repeat;       /* Resmin tekrar etmesini engeller */
+  background-size: cover;             /* Sayfayı tamamen kaplar */
+  background-position: center center; /* Ortalar */
+}
+
+/* Masaüstü */
+.desktop {
+  position: relative;
+  width: 100%;
+  height: calc(100% - 40px);
+  padding: 20px;
+}
+
+/* İkonlar */
+.icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80px;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  cursor: pointer;
+  position: absolute;
+}
+
+.icon img {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 5px;
+}
+
+/* Görev çubuğu */
+#taskbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #0f0;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  user-select: none;
+}
+
+.start-logo {
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
+}
+
+/* Sağ tık menüsü */
+.context-menu {
+  position: absolute;
+  background-color: #222;
+  border: 1px solid #444;
+  color: #fff;
+  z-index: 1000;
+  border-radius: 4px;
+  user-select: none;
+}
+
+.context-menu ul {
+  margin: 0;
+  padding: 5px 0;
+  list-style: none;
+}
+
+.context-menu li {
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.context-menu li:hover {
+  background-color: #444;
+}
+
+/* Pencereler */
+.window {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  width: 400px;
+  background-color: #111;
+  color: #0f0;
+  border: 1px solid #0f0;
+  border-radius: 5px;
+  box-shadow: 0 0 15px #0f0;
+  z-index: 2000;
+  user-select: text;
+}
+
+/* Pencere başlığı */
+.window-header {
+  background: #000;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #0f0;
+  user-select: none;
+}
+
+.window-header button {
+  background: #0f0;
+  color: #000;
+  border: none;
+  cursor: pointer;
+  padding: 2px 6px;
+  font-weight: bold;
+}
+
+/* Pencere içeriği */
+.window-body {
+  padding: 15px;
+  overflow-y: auto;
+  max-height: 250px;
+}
+
+/* Terminal */
+.terminal #output {
+  height: 150px;
+  overflow-y: auto;
+  margin-bottom: 5px;
+  white-space: pre-wrap;
+}
+
+.terminal .input-line input {
+  width: 100%;
+  background: black;
+  border: 1px solid #0f0;
+  color: #0f0;
+  padding: 5px;
+  font-family: monospace;
+  font-size: 14px;
+  outline: none;
+}
+
+.prompt {
+  font-weight: bold;
+}
