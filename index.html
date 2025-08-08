@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body style="background-image: url('./Image/desktop-walpaper.png');">
+
   <div class="desktop" id="desktop">
     <div class="icon" style="top:20px; left:20px;" onclick="openWindow('computerWindow')" draggable="true" ondragstart="drag(event)">
       <img src="./Image/computer-icon.png" alt="Bilgisayar" />
@@ -46,10 +47,52 @@
     </ul>
   </div>
 
+  <!-- Görev çubuğu -->
   <div id="taskbar">
     <img class="start-logo" src="./Image/Panda_Logo.png" alt="Başlat" />
     <span>Dark$ession OS</span>
+
+    <div class="taskbar-right">
+      <!-- Wifi ikonu -->
+      <div id="wifi-container" style="position: relative; cursor: pointer;">
+        <img class="wifi-icon" src="./Image/eth0-icon.png" alt="Wi-Fi" />
+      </div>
+      <span id="clock"></span>
+    </div>
   </div>
+
+  <!-- Ethernet arayüz penceresi (başlangıçta gizli) -->
+  <div id="eth0Window" class="window" style="display:none;">
+    <div class="window-header">
+      <span>Ethernet Arayüzü (eth0)</span>
+      <button onclick="closeWindow('eth0Window')">X</button>
+    </div>
+    <div class="window-body">
+      <p>Durum: Bağlı</p>
+      <p>IP Adresi: 192.168.1.100</p>
+      <p>Hız: 1 Gbps</p>
+    </div>
+  </div>
+
+  <script>
+    // Wifi ikonuna tıklayınca eth0 penceresini göster/gizle
+    const wifiContainer = document.getElementById('wifi-container');
+    const eth0Window = document.getElementById('eth0Window');
+
+    wifiContainer.addEventListener('click', () => {
+      if (eth0Window.style.display === 'none' || eth0Window.style.display === '') {
+        eth0Window.style.display = 'block';
+      } else {
+        eth0Window.style.display = 'none';
+      }
+    });
+
+    // Pencere kapatma fonksiyonu
+    function closeWindow(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+  </script>
+
 
   <!-- Pencereler -->
   <div id="computerWindow" class="window" style="display:none;">
@@ -110,21 +153,16 @@
       <button onclick="closeWindow('notesWindow')">X</button>
     </div>
     <div class="window-body">
-      - "Hoş geldin, genç hacker. İlk adımını at, kendini ve çevreni tanı."<br />
-       <br />
-      - Dizinleri keşfet<br />
-      <br />
-      - ECHO’nun gizli mesajını oku.<br />
-      <br />
-      - Kim olduğunu hatırla.<br />
-      <br />
-      -  Günlük log dosyalarına ulaş.<br />
-      <br />
+      - "Hoş geldin, genç hacker. İlk adımını at, kendini ve çevreni tanı."<br /><br />
+      - Dizinleri keşfet<br /><br />
+      - ECHO’nun gizli mesajını oku.<br /><br />
+      - Kim olduğunu hatırla.<br /><br />
+      - Günlük log dosyalarına ulaş.<br /><br />
       - Sayfanı temizlemeyi unutma "Ananim"!
     </div>
   </div>
 
   <script src="script.js"></script>
-  <script src="./script_window.js"></script>
+  <script src="script_window.js"></script>
 </body>
 </html>
