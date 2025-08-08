@@ -99,6 +99,8 @@ body, html {
   box-shadow: 0 0 15px #0f0;
   z-index: 2000;
   user-select: text;
+  transition: none;
+  cursor: default;
 }
 
 /* Pencere başlığı */
@@ -110,6 +112,7 @@ body, html {
   align-items: center;
   border-bottom: 1px solid #0f0;
   user-select: none;
+  cursor: move;
 }
 
 .window-header button {
