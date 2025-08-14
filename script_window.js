@@ -1,5 +1,18 @@
 // Pencere sürükleme ve tam ekran açma / kapama
 
+// Firefox penceresini minimize etme fonksiyonu
+function minimizeWindow(id) {
+  const window = document.getElementById(id);
+  if (window.style.height === '40px') {
+    window.style.height = window.dataset.prevHeight || '480px';
+    window.querySelector('.firefox-content').style.display = 'block';
+  } else {
+    window.dataset.prevHeight = window.style.height;
+    window.style.height = '40px';
+    window.querySelector('.firefox-content').style.display = 'none';
+  }
+}
+
 document.querySelectorAll('.window').forEach(windowEl => {
     const header = windowEl.querySelector('.window-header');
   

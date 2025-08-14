@@ -1,15 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;600;700&display=swap');
 
 /* Genel sayfa ayarları */
 body, html {
   margin: 0;
   padding: 0;
   height: 100%;
-  background: #0a0a0a;
-  background: linear-gradient(135deg, #0a0a0a 0%, #121212 100%);
   font-family: 'Source Code Pro', monospace;
+  background: url("./Image/desktop-walpaper.png") no-repeat center center fixed;
+  background-size: cover;
+  color: #b5f4a5; /* Neon yeşil */
   user-select: none;
-  color: #b5f4a5; /* Açık neon yeşili */
   overflow: hidden;
 }
 
@@ -17,47 +17,38 @@ body, html {
 .desktop {
   position: relative;
   width: 100%;
-  height: calc(100% - 50px);
+  height: calc(100% - 50px); /* Görev çubuğu hariç */
   padding: 25px;
   box-sizing: border-box;
 }
 
 /* Masaüstü ikonları */
 .icon {
-  position: absolute;
   width: 90px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #b5f4a5;
-  text-shadow:
-    0 0 5px #00ff00,
-    0 0 10px #00ff00,
-    0 0 15px #aaffaa;
-  cursor: pointer;
-  transition: transform 0.15s ease-in-out, color 0.3s;
-  user-select: none;
+  position: absolute;
+  text-align: center;
+  color: white;
+  text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #aaffaa;
   font-weight: 500;
   font-size: 0.9rem;
-}
-
-.icon:hover {
-  color: #ffff72;
-  text-shadow:
-    0 0 8px #ffff72,
-    0 0 18px #ffff72,
-    0 0 25px #ffff72;
-  transform: scale(1.1);
+  cursor: pointer;
+  transition: transform 0.15s ease-in-out, color 0.3s;
 }
 
 .icon img {
   width: 64px;
   height: 64px;
   margin-bottom: 5px;
-  /* Eğer burada border ya da box-shadow varsa kaldır */
-  border: none;
-  box-shadow: none;
   background: transparent;
+}
+
+.icon:hover {
+  color: #ffff72;
+  text-shadow: 0 0 8px #ffff72, 0 0 18px #ffff72, 0 0 25px #ffff72;
+  transform: scale(1.1);
 }
 
 /* Görev çubuğu */
@@ -67,19 +58,16 @@ body, html {
   width: 100%;
   height: 50px;
   padding: 0 20px;
-  box-sizing: border-box;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   background: rgba(0, 20, 0, 0.6);
   backdrop-filter: blur(10px);
   border-top: 1px solid #2f6f2f;
   color: #aaffaa;
-  user-select: none;
   font-weight: 600;
   font-size: 1rem;
+  user-select: none;
 }
 
 /* Görev çubuğu sağ tarafı */
@@ -118,9 +106,7 @@ body, html {
   font-size: 1.1rem;
   font-weight: 700;
   color: #c4ff8c;
-  text-shadow:
-    0 0 4px #aaff72,
-    0 0 8px #aaff72;
+  text-shadow: 0 0 4px #aaff72, 0 0 8px #aaff72;
 }
 
 /* Sağ tık menüsü */
@@ -156,18 +142,17 @@ body, html {
 
 /* Pencere genel stili */
 .window {
+  display: none;
   position: absolute;
   top: 100px;
   left: 100px;
-  width: 520px;
+  width: 800px;
   max-width: 90vw;
   height: 380px;
   background: rgba(10, 30, 10, 0.95);
   border: 1.5px solid #33cc33;
   border-radius: 12px;
-  box-shadow:
-    0 0 12px #33cc33,
-    inset 0 0 8px #22bb22aa;
+  box-shadow: 0 0 12px #33cc33, inset 0 0 8px #22bb22aa;
   color: #b5f4a5;
   user-select: text;
   display: flex;
@@ -190,9 +175,7 @@ body, html {
   font-weight: 700;
   font-size: 1.1rem;
   color: #e0ffb0;
-  text-shadow:
-    0 0 5px #aaff72,
-    0 0 15px #88cc44;
+  text-shadow: 0 0 5px #aaff72, 0 0 15px #88cc44;
 }
 
 .window-header button {
@@ -204,7 +187,6 @@ body, html {
   cursor: pointer;
   filter: drop-shadow(0 0 2px #33cc33);
   transition: color 0.25s ease;
-  user-select: none;
   padding: 0 6px;
   line-height: 1;
 }
@@ -216,16 +198,17 @@ body, html {
 
 /* Pencere içeriği */
 .window-body {
-  padding: 15px 20px;
-  overflow-y: auto;
   flex: 1;
+  padding: 15px 20px;
   font-size: 1rem;
   line-height: 1.4;
-  color: #b5f4a5;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
   text-shadow: 0 0 5px #99ff99cc;
 }
 
-/* Scrollbar pencerelerde ve terminalde */
+/* Scrollbar stili */
 .window-body::-webkit-scrollbar,
 #output::-webkit-scrollbar {
   width: 8px;
@@ -242,6 +225,19 @@ body, html {
   background: #44cc44;
   border-radius: 8px;
   box-shadow: inset 0 0 3px #339933;
+}
+
+/* Firefox adres çubuğu ve iframe */
+#urlBar {
+  padding: 5px;
+  font-size: 14px;
+  border: none;
+  outline: none;
+}
+
+iframe {
+  flex: 1;
+  border: none;
 }
 
 /* Terminal stili */
@@ -279,24 +275,6 @@ body, html {
   margin-top: 12px;
 }
 
-.prompt {
-  font-weight: 700;
-  margin-right: 10px;
-  color: #b5f4a5;
-  text-shadow: 0 0 7px #aaff72;
-  user-select: none;
-  min-width: 140px;
-}
-
-.path {
-  color: #a3f27e;
-  margin-right: 15px;
-  font-weight: 600;
-  text-shadow: 0 0 6px #66bb33;
-  user-select: none;
-  min-width: 180px;
-}
-
 .input-line input {
   flex: 1;
   background: transparent;
@@ -304,13 +282,11 @@ body, html {
   border-bottom: 2px solid #44cc44;
   color: #c4ff8c;
   font-family: 'Source Code Pro', monospace;
-  font-weight: 400;
   font-size: 1rem;
   padding: 6px 10px 4px 10px;
   outline: none;
   caret-color: #b4ff5f;
   transition: border-color 0.25s ease;
-  user-select: text;
 }
 
 .input-line input:focus {

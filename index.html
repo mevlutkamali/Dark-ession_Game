@@ -1,45 +1,55 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dark$ession_Desktop</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
-<body style="background-image: url('./Image/desktop-walpaper.png');">
+<body>
 
+  <!-- Masaüstü -->
   <div class="desktop" id="desktop">
+
+    <!-- Masaüstü ikonları -->
     <div class="icon" style="top:20px; left:20px;" onclick="openWindow('computerWindow')" draggable="true" ondragstart="drag(event)">
-      <img src="./Image/computer-icon.png" alt="Bilgisayar" />
+      <img src="./Image/computer-icon.png" alt="Bilgisayar">
       <span>Bilgisayar</span>
     </div>
 
     <div class="icon" style="top:20px; left:120px;" onclick="openWindow('terminalWindow')" draggable="true" ondragstart="drag(event)">
-      <img src="./Image/terminal-icon.png" alt="Terminal" />
+      <img src="./Image/terminal-icon.png" alt="Terminal">
       <span>Terminal</span>
     </div>
 
     <div class="icon" style="top:20px; left:220px;" onclick="openWindow('trashWindow')" draggable="true" ondragstart="drag(event)">
-      <img src="./Image/trash-icon.png" alt="Çöp Kutusu" />
+      <img src="./Image/trash-icon.png" alt="Çöp Kutusu">
       <span>Çöp Kutusu</span>
     </div>
 
     <div class="icon" style="top:120px; left:20px;" onclick="openWindow('confWindow')" draggable="true" ondragstart="drag(event)">
-      <img src="./Image/file-icon.png" alt="settings.conf" />
+      <img src="./Image/file-icon.png" alt="settings.conf">
       <span>settings.conf</span>
     </div>
 
     <div class="icon" style="top:120px; left:120px;" onclick="openWindow('readmeWindow')" draggable="true" ondragstart="drag(event)">
-      <img src="./Image/txt-icon.png" alt="readme.txt" />
+      <img src="./Image/txt-icon.png" alt="readme.txt">
       <span>readme.txt</span>
     </div>
 
     <div class="icon" style="top:120px; left:220px;" onclick="openWindow('notesWindow')" draggable="true" ondragstart="drag(event)">
-      <img src="./Image/txt-icon.png" alt="notlar.txt" />
+      <img src="./Image/txt-icon.png" alt="notlar.txt">
       <span>notlar.txt</span>
     </div>
+
+    <div class="icon" style="top:20px; left:320px;" onclick="openWindow('firefoxWindow')">
+      <img src="./Image/firefox-icon.png" alt="Firefox">
+      <span>Firefox</span>
+    </div>
+
   </div>
 
+  <!-- Sağ tık menüsü -->
   <div id="contextMenu" class="context-menu" style="display:none;">
     <ul>
       <li onclick="alert('Yeni dosya oluştur')">📝 Yeni Dosya</li>
@@ -49,20 +59,100 @@
 
   <!-- Görev çubuğu -->
   <div id="taskbar">
-    <img class="start-logo" src="./Image/Panda_Logo.png" alt="Başlat" />
+    <img class="start-logo" src="./Image/Panda_Logo.png" alt="Başlat">
     <span>Dark$ession OS</span>
-
     <div class="taskbar-right">
-      <!-- Wifi ikonu -->
-      <div id="wifi-container" style="position: relative; cursor: pointer;">
-        <img class="wifi-icon" src="./Image/eth0-icon.png" alt="Wi-Fi" />
+      <div id="wifi-container">
+        <img class="wifi-icon" src="./Image/eth0-icon.png" alt="Wi-Fi">
       </div>
       <span id="clock"></span>
     </div>
   </div>
 
-  <!-- Ethernet arayüz penceresi (başlangıçta gizli) -->
-  <div id="eth0Window" class="window" style="display:none;">
+  <!-- Pencereler -->
+  <div id="computerWindow" class="window">
+    <div class="window-header">
+      <span>Bilgisayar</span>
+      <button onclick="closeWindow('computerWindow')">X</button>
+    </div>
+    <div class="window-body">
+      🖥 Bu, sistem bilgisayarıdır.
+    </div>
+  </div>
+
+  <div id="terminalWindow" class="window">
+    <div class="window-header">
+      <span>Terminal</span>
+      <button onclick="closeWindow('terminalWindow')">X</button>
+    </div>
+    <div class="window-body">
+      <div class="terminal">
+        <div id="output">user@linux:~$</div>
+        <div class="input-line">
+          <input type="text" id="commandInput" autofocus autocomplete="off">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="trashWindow" class="window">
+    <div class="window-header">
+      <span>Çöp Kutusu</span>
+      <button onclick="closeWindow('trashWindow')">X</button>
+    </div>
+    <div class="window-body">
+      ♻️ Çöp kutusu şu an boş.
+    </div>
+  </div>
+
+  <div id="confWindow" class="window">
+    <div class="window-header">
+      <span>settings.conf</span>
+      <button onclick="closeWindow('confWindow')">X</button>
+    </div>
+    <div class="window-body">
+      config.user=DarkSession<br>
+      system.dark_mode=true
+    </div>
+  </div>
+
+  <div id="readmeWindow" class="window">
+    <div class="window-header">
+      <span>readme.txt</span>
+      <button onclick="closeWindow('readmeWindow')">X</button>
+    </div>
+    <div class="window-body">
+      Merhaba! Bu oyun terminal becerilerini test eder.
+    </div>
+  </div>
+
+  <div id="notesWindow" class="window">
+    <div class="window-header">
+      <span>notlar.txt</span>
+      <button onclick="closeWindow('notesWindow')">X</button>
+    </div>
+    <div class="window-body">
+      - "Hoş geldin, genç hacker. İlk adımını at, kendini ve çevreni tanı."<br><br>
+      - Dizinleri keşfet<br><br>
+      - ECHO’nun gizli mesajını oku.<br><br>
+      - Kim olduğunu hatırla.<br><br>
+      - Günlük log dosyalarına ulaş.<br><br>
+      - Sayfanı temizlemeyi unutma "Ananim"!
+    </div>
+  </div>
+
+  <div id="firefoxWindow" class="window">
+    <div class="window-header">
+      <span>Firefox Tarayıcı</span>
+      <button onclick="closeWindow('firefoxWindow')">X</button>
+    </div>
+    <div class="window-body">
+      <input type="text" id="urlBar" placeholder="Site adresini yazın ve Enter'a basın">
+      <iframe id="browserFrame"></iframe>
+    </div>
+  </div>
+
+  <div id="eth0Window" class="window">
     <div class="window-header">
       <span>Ethernet Arayüzü (eth0)</span>
       <button onclick="closeWindow('eth0Window')">X</button>
@@ -74,95 +164,92 @@
     </div>
   </div>
 
-  <script>
-    // Wifi ikonuna tıklayınca eth0 penceresini göster/gizle
-    const wifiContainer = document.getElementById('wifi-container');
-    const eth0Window = document.getElementById('eth0Window');
-
-    wifiContainer.addEventListener('click', () => {
-      if (eth0Window.style.display === 'none' || eth0Window.style.display === '') {
-        eth0Window.style.display = 'block';
-      } else {
-        eth0Window.style.display = 'none';
+  <!-- JS -->
+   <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const icons = document.querySelectorAll('.desktop .icon');
+      const desktop = document.getElementById('desktop');
+  
+      const desktopWidth = desktop.clientWidth - 100; // ikon genişliği + boşluk
+      const desktopHeight = desktop.clientHeight - 100; // ikon yüksekliği + boşluk
+  
+      icons.forEach(icon => {
+          // Rastgele top ve left değerleri
+          const top = Math.floor(Math.random() * desktopHeight);
+          const left = Math.floor(Math.random() * desktopWidth);
+  
+          icon.style.top = top + 'px';
+          icon.style.left = left + 'px';
+      });
+  
+      // Başta tüm pencereler kapalı
+      const windows = document.querySelectorAll('.window');
+      windows.forEach(win => {
+          win.style.display = 'none';
+      });
+  
+      // Saat güncellemesi
+      const clock = document.getElementById('clock');
+      function updateClock() {
+          const now = new Date();
+          clock.textContent = now.toLocaleTimeString();
       }
-    });
-
-    // Pencere kapatma fonksiyonu
-    function closeWindow(id) {
-      document.getElementById(id).style.display = 'none';
-    }
+      setInterval(updateClock, 1000);
+      updateClock();
+  });
+  
+  // Pencere açma
+  function openWindow(id) {
+      const win = document.getElementById(id);
+      win.style.display = 'block';
+  }
+  
+  // Pencere kapatma
+  function closeWindow(id) {
+      const win = document.getElementById(id);
+      win.style.display = 'none';
+  }
+  
+  // Sürükleme fonksiyonu
+  let draggedIcon = null;
+  
+  function drag(event) {
+      draggedIcon = event.target.closest('.icon');
+      const offsetX = event.offsetX;
+      const offsetY = event.offsetY;
+  
+      function moveAt(e) {
+          draggedIcon.style.left = e.pageX - desktop.offsetLeft - offsetX + 'px';
+          draggedIcon.style.top = e.pageY - desktop.offsetTop - offsetY + 'px';
+      }
+  
+      function onMouseMove(e) {
+          moveAt(e);
+      }
+  
+      document.addEventListener('mousemove', onMouseMove);
+  
+      document.addEventListener('mouseup', function mouseUpHandler() {
+          document.removeEventListener('mousemove', onMouseMove);
+          document.removeEventListener('mouseup', mouseUpHandler);
+      });
+  }
+  
+  // Wifi ikonuna tıklayınca eth0 penceresini göster/gizle
+  const wifiContainer = document.getElementById('wifi-container');
+  const eth0Window = document.getElementById('eth0Window');
+  
+  wifiContainer.addEventListener('click', () => {
+      if (eth0Window.style.display === 'none' || eth0Window.style.display === '') {
+          eth0Window.style.display = 'block';
+      } else {
+          eth0Window.style.display = 'none';
+      }
+  });  
   </script>
-
-
-  <!-- Pencereler -->
-  <div id="computerWindow" class="window" style="display:none;">
-    <div class="window-header">
-      <span>Bilgisayar</span>
-      <button onclick="closeWindow('computerWindow')">X</button>
-    </div>
-    <div class="window-body">🖥 Bu, sistem bilgisayarıdır.</div>
-  </div>
-
-  <div id="terminalWindow" class="window" style="display:none;">
-    <div class="window-header">
-      <span>Terminal</span>
-      <button onclick="closeWindow('terminalWindow')">X</button>
-    </div>
-    <div class="window-body">
-      <div class="terminal">
-        <div id="output">user@linux:~$</div>
-        <div class="input-line">
-          <input type="text" id="commandInput" autofocus autocomplete="off" />
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="trashWindow" class="window" style="display:none;">
-    <div class="window-header">
-      <span>Çöp Kutusu</span>
-      <button onclick="closeWindow('trashWindow')">X</button>
-    </div>
-    <div class="window-body">♻️ Çöp kutusu şu an boş.</div>
-  </div>
-
-  <div id="confWindow" class="window" style="display:none;">
-    <div class="window-header">
-      <span>settings.conf</span>
-      <button onclick="closeWindow('confWindow')">X</button>
-    </div>
-    <div class="window-body">
-      config.user=DarkSession<br />
-      system.dark_mode=true
-    </div>
-  </div>
-
-  <div id="readmeWindow" class="window" style="display:none;">
-    <div class="window-header">
-      <span>readme.txt</span>
-      <button onclick="closeWindow('readmeWindow')">X</button>
-    </div>
-    <div class="window-body">
-      Merhaba! Bu oyun terminal becerilerini test eder.
-    </div>
-  </div>
-
-  <div id="notesWindow" class="window" style="display:none;">
-    <div class="window-header">
-      <span>notlar.txt</span>
-      <button onclick="closeWindow('notesWindow')">X</button>
-    </div>
-    <div class="window-body">
-      - "Hoş geldin, genç hacker. İlk adımını at, kendini ve çevreni tanı."<br /><br />
-      - Dizinleri keşfet<br /><br />
-      - ECHO’nun gizli mesajını oku.<br /><br />
-      - Kim olduğunu hatırla.<br /><br />
-      - Günlük log dosyalarına ulaş.<br /><br />
-      - Sayfanı temizlemeyi unutma "Ananim"!
-    </div>
-  </div>
-
   <script src="script.js"></script>
-  <script src="script_window.js"></script>
+  <script src="./script_window.js"></script>
+  <script src="./firefox.js"></script>
+
 </body>
 </html>
