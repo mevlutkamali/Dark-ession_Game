@@ -1,0 +1,94 @@
+/* -----------------------------
+   Pencere Ana Kapsayıcı
+----------------------------- */
+.window {
+  width: 80%; /* Pencerenin genişliği sayfanın %80'i kadar */
+  margin: 0 auto 2rem; /* Üst boşluk 0, yatayda ortala (auto), alt boşluk 2rem */
+  box-shadow: 0 .25rem .5rem #1a222e; /* Hafif gölge, pencerenin yukarıda duruyor hissi verir */
+  border-radius: 0 0 .1rem .1rem; /* Alt köşeler hafif yuvarlatılmış, üst köşeler düz */
+}
+
+/* -----------------------------
+   Pencerenin Üst Çubuğu (Bar)
+----------------------------- */
+.bar {
+  background: #191919; /* Üst çubuğun koyu arka plan rengi */
+  height: 36px; /* Çubuğun yüksekliği (btn-size * 3 olarak SCSS’te belirlenmiş) */
+  border-radius: .5rem .5rem 0 0; /* Üst köşeler yuvarlak, alt köşeler düz */
+  position: relative; /* İçindeki butonları konumlandırmak için relative */
+}
+
+/* -----------------------------
+   Butonlar (Close, Minimize, Maximize)
+----------------------------- */
+.btn {
+  width: 12px; /* Butonun genişliği */
+  height: 12px; /* Butonun yüksekliği */
+  border-radius: 100%; /* Daire şeklinde görünmesini sağlar */
+  display: block; /* Blok olarak görünmesini sağlar */
+  background: #f6b73e; /* Minimize butonunun rengi */
+  position: relative; /* ::before ve ::after ile konumlandırmak için */
+  margin-left: 38px; /* Butonun sol boşluğu (btn-left-offset + btn-size + btn-inner-margin) */
+  top: 12px; /* Üstten boşluk, çubuğun ortasında hizalama için */
+}
+
+/* -----------------------------
+   Butonların Ön ve Arka Kopyaları
+   ::before -> Close Butonu
+   ::after  -> Maximize Butonu
+----------------------------- */
+.btn::before {
+  content: ' '; /* Boş içerik, sadece görsel için */
+  position: absolute; /* Konumu parent .btn’a göre belirlenir */
+  width: 12px; /* Butonun genişliği */
+  height: 12px; /* Butonun yüksekliği */
+  border-radius: 100%; /* Daire şekli */
+  background: #f55551; /* Close butonunun kırmızı rengi */
+  margin-left: -20px; /* Butonun soluna negatif boşluk, yan yana hizalama için */
+}
+
+.btn::after {
+  content: ' '; /* Boş içerik */
+  position: absolute; /* Parent .btn’a göre konumlandırılır */
+  width: 12px; /* Butonun genişliği */
+  height: 12px; /* Butonun yüksekliği */
+  border-radius: 100%; /* Daire şekli */
+  background: #32c146; /* Maximize butonunun yeşil rengi */
+  margin-left: 20px; /* Sağ tarafa boşluk, yan yana hizalama için */
+}
+
+/* -----------------------------
+   Terminal İçerik Alanı
+----------------------------- */
+.body {
+  height: 10rem; /* İçerik alanının yüksekliği */
+  background: #232323; /* Koyu gri arka plan */
+  padding: 18px; /* İçerik ile kenarlar arası boşluk (btn-left-offset) */
+}
+
+/* -----------------------------
+   Komut Satır Rengi
+----------------------------- */
+.command {
+  color: #32c146; /* Komutların yeşil rengi (maximize buton rengi ile aynı) */
+}
+
+/* -----------------------------
+   Yorum Satırları
+----------------------------- */
+.comment {
+  opacity: .5; /* Yarı saydam görünüm */
+}
+
+/* -----------------------------
+   Pulse Animasyonu (İmleç için)
+----------------------------- */
+.pulse {
+  animation: pulse 1s ease-in-out infinite; /* 1 saniyelik sürekli yanıp sönme efekti */
+}
+
+@keyframes pulse {
+  0% { opacity: 0; }   /* Başlangıçta görünmez */
+  50% { opacity: 1; }  /* Ortada görünür */
+  100% { opacity: 0; } /* Sona doğru tekrar kaybolur */
+}

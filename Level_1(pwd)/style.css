@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300;400;600;700&display=swap');
+
+/* ----------------------- Genel ----------------------- */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Source Code Pro', monospace;
+  background-color: #0a1f2f; /* Koyu mavi-siyah */
+  color: #ffffff;
+  user-select: none;
+  overflow: hidden;
+}
+
+.desktop {
+  position: relative;
+  width: 100%;
+  height: calc(100% - 50px);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* ----------------------- Masaüstü İkonları ----------------------- */
+.icon {
+  width: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  text-align: center;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: transform 0.15s ease-in-out;
+}
+
+.icon img {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 5px;
+}
+
+.icon:hover {
+  transform: scale(1.05);
+}
+
+/* ----------------------- Görev Çubuğu ----------------------- */
+#taskbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #102534;
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.taskbar-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-right: 20px;
+}
+
+.start-logo {
+  width: 38px;
+  height: 38px;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.wifi-icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+#clock {
+  font-family: 'Source Code Pro', monospace;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* ----------------------- Sağ Tık Menüsü ----------------------- */
+.context-menu {
+  position: absolute;
+  background-color: #102534;
+  border: 1px solid #1f3b50;
+  border-radius: 4px;
+  color: #ffffff;
+  z-index: 1000;
+  font-size: 0.9rem;
+  min-width: 140px;
+}
+
+.context-menu ul {
+  margin: 0;
+  padding: 5px 0;
+  list-style: none;
+}
+
+.context-menu li {
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.context-menu li:hover {
+  background-color: #1f3b50;
+}
+
+/* ----------------------- Pencere ----------------------- */
+.window {
+  display: none;
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  width: 800px;
+  max-width: 90vw;
+  height: 400px;
+  background: linear-gradient(135deg, #2b3e50, #1f2937, #3a2b1f);
+  border: 1px solid #1f3b50;
+  border-radius: 8px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: 'Source Code Pro', monospace;
+  animation: bounceIn 1s ease-in-out;
+}
+
+/* Pencere başlığı */
+.window .handle {
+  height: 32px;
+  background: linear-gradient(90deg, #3a4c60, #2a2a2a);
+  border-bottom: 1px solid #1f3b50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: move;
+  color: #ffffff;
+}
+
+.window .buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.window .buttons button {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+.window .buttons .close { background-color: #ff5f5f; }
+.window .buttons .minimize { background-color: #ffbf2f; }
+.window .buttons .maximize { background-color: #25cc3e; }
+
+.window .title {
+  flex-grow: 1;
+  text-align: center;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* ----------------------- Pencere İçeriği ----------------------- */
+.window-body {
+  flex: 1;
+  padding: 12px 16px;
+  font-size: 1rem;
+  line-height: 1.4;
+  overflow-y: auto;
+  background-color: rgba(0,0,0,0.2);
+}
+
+/* ----------------------- Terminal ----------------------- */
+.terminal {
+  background-color: #0a2b3d;
+  color: #ffffff;
+  padding: 12px 16px;
+  flex: 1;
+  font-size: 1rem;
+  border-radius: 6px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  position: relative;
+}
+
+.terminal .prompt {
+  color: #00ff99;
+  font-weight: 600;
+}
+
+.terminal .line {
+  display: block;
+  width: 100%;
+}
+
+.terminal::after {
+  content: "|";
+  animation: blink 1s steps(1) infinite;
+  position: absolute;
+  right: 10px;
+  bottom: 5px;
+  color: #ffffff;
+}
+
+@keyframes blink {
+  50% { color: transparent; }
+}
+
+@keyframes bounceIn {
+  0% { transform: translateY(-1000px); }
+  60% { transform: translateY(200px); }
+  100% { transform: translateY(0px); }
+}

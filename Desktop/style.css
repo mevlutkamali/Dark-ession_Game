@@ -1,0 +1,53 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    color: #ffffff;
+    background: url('./Image/desktop-walpaper.png')
+                no-repeat
+                center / cover;
+}
+
+.desktop {    
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+}
+
+.icon {
+    color: white;
+    text-align: center;
+    margin-top: 0.8%;
+    width: 90px;
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+}
+
+.icon i {
+    font-size: 2rem;
+}
+
+.icon-column {
+  position: absolute;   /* Ekranda belirli bir konum için */
+  top: 50px;            /* Üstten 50px aşağı */
+  left: 50px;           /* Soldan 50px sağa */
+  display: flex;        /* Flexbox kullan */
+  flex-direction: column; /* Sıralamayı alt alta yap */
+}
+
+.icon-center {
+    color: #ffffff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 90px;
+}
+
+.icon-center i {
+    font-size: 2rem;
+}

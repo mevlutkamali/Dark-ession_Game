@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark$ession_Desktop</title>
+
+    <!-- Stil dosyaları -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="terminal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">  
+</head>
+<body>
+
+<!-- Masaüstü ikonları -->
+<div class="desktop">
+  <!-- Terminal ikonu -->
+  <div class="icon" id="terminal-icon">
+    <i class="fa-solid fa-terminal"></i><br>Terminal
+  </div>
+</div>
+
+<!-- Terminal Penceresi -->
+<div id="terminalWindow">
+  <div class="bar">
+    <span>Terminal</span>
+    <span class="close-btn" onclick="closeTerminal()">✖</span>
+  </div>
+
+  <div class="body" id="terminal-body">
+    <!-- Başlangıç satırı -->
+    <pre id="terminal-line">
+      <span class="command">user@darksession:~$</span><span class="pulse">_</span>
+    </pre>
+    <!-- Gizli input -->
+    <input type="text" id="terminal-input" style="position:absolute;opacity:0;pointer-events:none;">
+  </div>
+</div>
+
+
+<!-- JS Terminal -->
+<script src="terminal.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:200');
+
+.window {
+  animation: bounceIn 1s ease-in-out;
+  width: 640px;
+}
+
+.window .handle {
+  height: 22px;
+  background: linear-gradient(0deg, rgb(216, 216, 216), rgb(236, 236, 236));
+  border-top: 1px solid white;
+  border-bottom: 1px solid rgb(179, 179, 179);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: rgba(0, 0, 0, 0.7);
+  font-family: Helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 22px;
+  text-align: center;
+  position: relative;
+}
+
+.window .buttons {
+  position: absolute;
+  left: 8px;
+  top: 3px;
+  display: flex;
+  gap: 4px;
+}
+
+.window .buttons button {
+  width: 12px;
+  height: 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 0;
+  margin: 0;
+}
+
+.window .buttons .close {
+  background-color: rgb(255, 97, 89);
+}
+
+.window .buttons .minimize {
+  background-color: rgb(255, 191, 47);
+}
+
+.window .buttons .maximize {
+  background-color: rgb(37, 204, 62);
+}
+
+.terminal {
+  padding: 4px;
+  background-color: black;
+  opacity: 0.7;
+  height: 240px; /* pencere boyutunun yarısı */
+  color: white;
+  font-family: 'Source Code Pro', monospace;
+  font-weight: 200;
+  font-size: 14px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  overflow-y: auto;
+  position: relative;
+}
+
+.terminal::after {
+  content: "|";
+  animation: blink 1s steps(1) infinite;
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+}
+
+@keyframes blink {
+  50% { color: transparent; }
+}
+
+@keyframes bounceIn {
+  0% { transform: translateY(-1000px); }
+  60% { transform: translateY(200px); }
+  100% { transform: translateY(0px); }
+}

@@ -1,0 +1,64 @@
+/* Terminal penceresi */
+#terminalWindow {
+    display: none;
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    width: 90%;
+    max-width: 600px;
+    height: 60%;
+    max-height: 400px;
+    color: #fff;
+    background: #41444B;
+    border-radius: 8px;
+    border: 2px solid #52575D;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    z-index: 1000;
+}
+
+/* Üst çubuk */
+#terminalWindow .bar {
+    background: #7A7A73;
+    height: 36px;
+    padding: 0 10px;
+    border-radius: 5px 5px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Kapat butonu */
+#terminalWindow .close-btn {
+    color: #E43636;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Terminal içerik alanı */
+#terminalWindow .body {
+    background: #41444B;
+    padding: 10px;
+    height: calc(100% - 36px);
+    overflow-y: auto;
+    font-family: monospace;
+    white-space: pre-wrap;
+}
+
+/* Komut satırı rengi */
+#terminalWindow .command {
+    color: #78C841;
+}
+
+/* Yanıp sönen imleç */
+#terminalWindow .pulse {
+    display: inline;       /* Satırda kalsın */
+    animation: pulse 1s ease-in-out infinite;
+}
+
+/* Pulse animasyonu */
+@keyframes pulse {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dark$ession_Desktop</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="erminal.css">
+</head>
+<body background="./Image/2022_loading.jpg">
+
+  <!-- Masaüstü -->
+  <div class="desktop" id="desktop">
+
+    <!-- Masaüstü ikonları -->
+    <div class="icon" style="top:20px; left:20px;" onclick="openWindow('computerWindow')" draggable="true" ondragstart="drag(event)">
+      <img src="./Image/computer-icon.png" alt="Bilgisayar">
+      <span>Bilgisayar</span>
+    </div>
+
+    <div class="icon" style="top:20px; left:120px;" onclick="openWindow('terminalWindow')" draggable="true" ondragstart="drag(event)">
+      <img src="./Image/terminal-icon.png" alt="Terminal">
+      <span>Terminal</span>
+    </div>
+
+    <div class="icon" style="top:20px; left:220px;" onclick="openWindow('trashWindow')" draggable="true" ondragstart="drag(event)">
+      <img src="./Image/trash-icon.png" alt="Çöp Kutusu">
+      <span>Çöp Kutusu</span>
+    </div>
+
+    <div class="icon" style="top:120px; left:20px;" onclick="openWindow('confWindow')" draggable="true" ondragstart="drag(event)">
+      <img src="./Image/file-icon.png" alt="settings.conf">
+      <span>settings.conf</span>
+    </div>
+
+    <div class="icon" style="top:120px; left:120px;" onclick="openWindow('readmeWindow')" draggable="true" ondragstart="drag(event)">
+      <img src="./Image/txt-icon.png" alt="readme.txt">
+      <span>readme.txt</span>
+    </div>
+
+    <div class="icon" style="top:120px; left:220px;" onclick="openWindow('notesWindow')" draggable="true" ondragstart="drag(event)">
+      <img src="./Image/txt-icon.png" alt="notlar.txt">
+      <span>notlar.txt</span>
+    </div>
+
+    <div class="icon" style="top:20px; left:320px;" onclick="openWindow('firefoxWindow')">
+      <img src="./Image/firefox-icon.png" alt="Firefox">
+      <span>Firefox</span>
+    </div>
+
+  </div>
+
+  <!-- Terminal Penceresi -->
+  <div id="terminalWindow" class="window">
+    <div class="handle">
+      <div class="buttons">
+        <button class="close" onclick="closeWindow('terminalWindow')"></button>
+        <button class="minimize"></button>
+        <button class="maximize"></button>
+      </div>
+      <span class="title">Terminal</span>
+    </div>
+    <div class="window-body">
+      <div class="terminal" id="terminalOutput" contenteditable="true" spellcheck="false"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="script_window.js"></script>
+  <script src="terminal.js"></script>
+  <script src="firefox.js"></script>
+</body>
+</html>
+
