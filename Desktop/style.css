@@ -78,6 +78,14 @@ html, body {
     color: #58a6ff;
 }
 
+/* Specific icon colors */
+#terminal-icon i { color: #28a745; }
+#file-manager-icon i { color: #ffc107; }
+#text-editor-icon i { color: #6f42c1; }
+#calculator-icon i { color: #17a2b8; }
+#system-info-icon i { color: #fd7e14; }
+#memory-monitor-icon i { color: #e83e8c; }
+
 .icon span {
     font-size: 12px;
     text-align: center;
@@ -264,7 +272,7 @@ html, body {
     background: #0d1117;
 }
 
-/* Application-specific styles */
+/* File Manager specific styles */
 .file-manager {
     height: 100%;
     display: flex;
@@ -337,7 +345,7 @@ html, body {
     color: #ffa657;
 }
 
-/* Text Editor styles */
+/* Text Editor specific styles */
 .text-editor {
     height: 100%;
     display: flex;
@@ -371,7 +379,7 @@ html, body {
     color: #6e7681;
 }
 
-/* Calculator styles */
+/* Calculator specific styles */
 .calculator {
     padding: 20px;
     max-width: 300px;

@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -35,6 +35,16 @@
             <div class="icon" id="calculator-icon" data-app="calculator">
                 <i class="fas fa-calculator"></i>
                 <span>Calculator</span>
+            </div>
+            
+            <div class="icon" id="system-info-icon" data-app="system-info">
+                <i class="fas fa-desktop"></i>
+                <span>System Info</span>
+            </div>
+            
+            <div class="icon" id="memory-monitor-icon" data-app="memory-monitor">
+                <i class="fas fa-memory"></i>
+                <span>Memory Monitor</span>
             </div>
         </div>
         
@@ -205,8 +215,60 @@
         </div>
     </div>
 
+    <!-- System Info Window -->
+    <div class="window" id="system-info-window" data-app="system-info">
+        <div class="window-header">
+            <div class="window-title">
+                <i class="fas fa-desktop"></i>
+                <span>System Information</span>
+            </div>
+            <div class="window-controls">
+                <button class="window-btn minimize-btn" title="Minimize">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button class="window-btn maximize-btn" title="Maximize">
+                    <i class="fas fa-square"></i>
+                </button>
+                <button class="window-btn close-btn" title="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="window-content">
+            <div id="system-info-content" style="padding: 20px; font-family: 'Courier New', monospace; background: #1e1e1e; color: #fff; overflow-y: auto; height: 100%;">
+                <!-- System info will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Memory Monitor Window -->
+    <div class="window" id="memory-monitor-window" data-app="memory-monitor">
+        <div class="window-header">
+            <div class="window-title">
+                <i class="fas fa-memory"></i>
+                <span>Memory Monitor</span>
+            </div>
+            <div class="window-controls">
+                <button class="window-btn minimize-btn" title="Minimize">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button class="window-btn maximize-btn" title="Maximize">
+                    <i class="fas fa-square"></i>
+                </button>
+                <button class="window-btn close-btn" title="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="window-content">
+            <div id="memory-monitor-content" style="padding: 20px; background: #1e1e1e; color: #fff; overflow-y: auto; height: 100%;">
+                <!-- Memory monitor will be populated here -->
+            </div>
+        </div>
+    </div>
+
     <!-- Scripts -->
-    <script src="desktop.js"></script>
     <script src="terminal.js"></script>
+    <script src="desktop.js"></script>
 </body>
 </html>
