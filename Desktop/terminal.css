@@ -1,64 +1,114 @@
-/* Terminal penceresi */
-#terminalWindow {
-    display: none;
-    position: absolute;
-    top: 10%;
-    left: 5%;
-    width: 90%;
-    max-width: 600px;
-    height: 60%;
-    max-height: 400px;
-    color: #fff;
-    background: #41444B;
-    border-radius: 8px;
-    border: 2px solid #52575D;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    overflow: hidden;
-    z-index: 1000;
+/* Terminal specific styles */
+.terminal-container {
+    height: 100%;
+    background: #0d1117;
+    color: #c9d1d9;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.4;
+    padding: 15px;
+    overflow-y: auto;
 }
 
-/* Üst çubuk */
-#terminalWindow .bar {
-    background: #7A7A73;
-    height: 36px;
-    padding: 0 10px;
-    border-radius: 5px 5px 0 0;
+#terminal-output {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin-bottom: 10px;
+}
+
+.terminal-input-line {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    position: relative;
 }
 
-/* Kapat butonu */
-#terminalWindow .close-btn {
-    color: #E43636;
-    cursor: pointer;
+.terminal-prompt {
+    color: #58a6ff;
+    font-weight: bold;
+    margin-right: 8px;
+    user-select: none;
+}
+
+#terminal-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #c9d1d9;
+    font-family: inherit;
+    font-size: inherit;
+    flex: 1;
+    caret-color: transparent;
+}
+
+.terminal-cursor {
+    color: #58a6ff;
+    animation: blink 1s infinite;
+    margin-left: 2px;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* Terminal output colors */
+.terminal-output .error {
+    color: #f85149;
+}
+
+.terminal-output .success {
+    color: #56d364;
+}
+
+.terminal-output .warning {
+    color: #e3b341;
+}
+
+.terminal-output .info {
+    color: #58a6ff;
+}
+
+.terminal-output .command {
+    color: #c9d1d9;
+}
+
+.terminal-output .path {
+    color: #79c0ff;
+}
+
+.terminal-output .file {
+    color: #c9d1d9;
+}
+
+.terminal-output .directory {
+    color: #58a6ff;
     font-weight: bold;
 }
 
-/* Terminal içerik alanı */
-#terminalWindow .body {
-    background: #41444B;
-    padding: 10px;
-    height: calc(100% - 36px);
-    overflow-y: auto;
-    font-family: monospace;
-    white-space: pre-wrap;
+.terminal-output .executable {
+    color: #56d364;
+    font-weight: bold;
 }
 
-/* Komut satırı rengi */
-#terminalWindow .command {
-    color: #78C841;
+.terminal-output .comment {
+    color: #8b949e;
+    font-style: italic;
 }
 
-/* Yanıp sönen imleç */
-#terminalWindow .pulse {
-    display: inline;       /* Satırda kalsın */
-    animation: pulse 1s ease-in-out infinite;
+/* Scrollbar styling for terminal */
+.terminal-container::-webkit-scrollbar {
+    width: 8px;
 }
 
-/* Pulse animasyonu */
-@keyframes pulse {
-    0% { opacity: 0; }
-    50% { opacity: 1; }
-    100% { opacity: 0; }
+.terminal-container::-webkit-scrollbar-track {
+    background: #161b22;
+}
+
+.terminal-container::-webkit-scrollbar-thumb {
+    background: #30363d;
+    border-radius: 4px;
+}
+
+.terminal-container::-webkit-scrollbar-thumb:hover {
+    background: #484f58;
 }

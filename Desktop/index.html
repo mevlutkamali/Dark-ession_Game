@@ -1,45 +1,212 @@
-<!DOCTYPE html>
-<html lang="tr">
+ <!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dark$ession_Desktop</title>
-
-    <!-- Stil dosyaları -->
+    <title>Dark$ession Desktop</title>
+    
+    <!-- External libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- Custom styles -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="terminal.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">  
 </head>
 <body>
+    <!-- Desktop Environment -->
+    <div class="desktop" id="desktop">
+        <!-- Desktop Icons -->
+        <div class="desktop-icons">
+            <div class="icon" id="terminal-icon" data-app="terminal">
+                <i class="fas fa-terminal"></i>
+                <span>Terminal</span>
+            </div>
+            
+            <div class="icon" id="file-manager-icon" data-app="file-manager">
+                <i class="fas fa-folder"></i>
+                <span>Files</span>
+            </div>
+            
+            <div class="icon" id="text-editor-icon" data-app="text-editor">
+                <i class="fas fa-file-code"></i>
+                <span>Editor</span>
+            </div>
+            
+            <div class="icon" id="calculator-icon" data-app="calculator">
+                <i class="fas fa-calculator"></i>
+                <span>Calculator</span>
+            </div>
+        </div>
+        
+        <!-- Taskbar -->
+        <div class="taskbar">
+            <div class="taskbar-left">
+                <div class="start-button">
+                    <i class="fas fa-th"></i>
+                </div>
+                <div class="taskbar-apps" id="taskbar-apps">
+                    <!-- Running applications will appear here -->
+                </div>
+            </div>
+            <div class="taskbar-right">
+                <div class="system-tray">
+                    <span id="clock"></span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<!-- Masaüstü ikonları -->
-<div class="desktop">
-  <!-- Terminal ikonu -->
-  <div class="icon" id="terminal-icon">
-    <i class="fa-solid fa-terminal"></i><br>Terminal
-  </div>
-</div>
+    <!-- Terminal Window -->
+    <div class="window" id="terminal-window" data-app="terminal">
+        <div class="window-header">
+            <div class="window-title">
+                <i class="fas fa-terminal"></i>
+                <span>Terminal</span>
+            </div>
+            <div class="window-controls">
+                <button class="window-btn minimize-btn" title="Minimize">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button class="window-btn maximize-btn" title="Maximize">
+                    <i class="fas fa-square"></i>
+                </button>
+                <button class="window-btn close-btn" title="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="window-content">
+            <div class="terminal-container">
+                <div id="terminal-output"></div>
+                <div class="terminal-input-line">
+                    <span class="terminal-prompt">user@darksession:~$ </span>
+                    <input type="text" id="terminal-input" autocomplete="off" spellcheck="false">
+                    <span class="terminal-cursor">█</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<!-- Terminal Penceresi -->
-<div id="terminalWindow">
-  <div class="bar">
-    <span>Terminal</span>
-    <span class="close-btn" onclick="closeTerminal()">✖</span>
-  </div>
+    <!-- File Manager Window -->
+    <div class="window" id="file-manager-window" data-app="file-manager">
+        <div class="window-header">
+            <div class="window-title">
+                <i class="fas fa-folder"></i>
+                <span>File Manager</span>
+            </div>
+            <div class="window-controls">
+                <button class="window-btn minimize-btn" title="Minimize">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button class="window-btn maximize-btn" title="Maximize">
+                    <i class="fas fa-square"></i>
+                </button>
+                <button class="window-btn close-btn" title="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="window-content">
+            <div class="file-manager">
+                <div class="file-toolbar">
+                    <button class="btn" id="back-btn"><i class="fas fa-arrow-left"></i></button>
+                    <button class="btn" id="forward-btn"><i class="fas fa-arrow-right"></i></button>
+                    <button class="btn" id="up-btn"><i class="fas fa-arrow-up"></i></button>
+                    <div class="path-bar">
+                        <span id="current-path">/home/user</span>
+                    </div>
+                </div>
+                <div class="file-list" id="file-list">
+                    <!-- Files and folders will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
 
-  <div class="body" id="terminal-body">
-    <!-- Başlangıç satırı -->
-    <pre id="terminal-line">
-      <span class="command">user@darksession:~$</span><span class="pulse">_</span>
-    </pre>
-    <!-- Gizli input -->
-    <input type="text" id="terminal-input" style="position:absolute;opacity:0;pointer-events:none;">
-  </div>
-</div>
+    <!-- Text Editor Window -->
+    <div class="window" id="text-editor-window" data-app="text-editor">
+        <div class="window-header">
+            <div class="window-title">
+                <i class="fas fa-file-code"></i>
+                <span>Text Editor - untitled.txt</span>
+            </div>
+            <div class="window-controls">
+                <button class="window-btn minimize-btn" title="Minimize">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button class="window-btn maximize-btn" title="Maximize">
+                    <i class="fas fa-square"></i>
+                </button>
+                <button class="window-btn close-btn" title="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="window-content">
+            <div class="text-editor">
+                <div class="editor-toolbar">
+                    <button class="btn" id="new-file-btn"><i class="fas fa-file"></i> New</button>
+                    <button class="btn" id="open-file-btn"><i class="fas fa-folder-open"></i> Open</button>
+                    <button class="btn" id="save-file-btn"><i class="fas fa-save"></i> Save</button>
+                </div>
+                <textarea id="editor-content" placeholder="Start typing..."></textarea>
+            </div>
+        </div>
+    </div>
 
+    <!-- Calculator Window -->
+    <div class="window" id="calculator-window" data-app="calculator">
+        <div class="window-header">
+            <div class="window-title">
+                <i class="fas fa-calculator"></i>
+                <span>Calculator</span>
+            </div>
+            <div class="window-controls">
+                <button class="window-btn minimize-btn" title="Minimize">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button class="window-btn maximize-btn" title="Maximize">
+                    <i class="fas fa-square"></i>
+                </button>
+                <button class="window-btn close-btn" title="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="window-content">
+            <div class="calculator">
+                <div class="calculator-display">
+                    <input type="text" id="calc-display" readonly value="0">
+                </div>
+                <div class="calculator-buttons">
+                    <button class="calc-btn clear" onclick="calculator.clear()">C</button>
+                    <button class="calc-btn operator" onclick="calculator.operation('/')">/</button>
+                    <button class="calc-btn operator" onclick="calculator.operation('*')">×</button>
+                    <button class="calc-btn operator" onclick="calculator.operation('-')">−</button>
+                    
+                    <button class="calc-btn number" onclick="calculator.number('7')">7</button>
+                    <button class="calc-btn number" onclick="calculator.number('8')">8</button>
+                    <button class="calc-btn number" onclick="calculator.number('9')">9</button>
+                    <button class="calc-btn operator" onclick="calculator.operation('+')">+</button>
+                    
+                    <button class="calc-btn number" onclick="calculator.number('4')">4</button>
+                    <button class="calc-btn number" onclick="calculator.number('5')">5</button>
+                    <button class="calc-btn number" onclick="calculator.number('6')">6</button>
+                    <button class="calc-btn equals" onclick="calculator.equals()" rowspan="2">=</button>
+                    
+                    <button class="calc-btn number" onclick="calculator.number('1')">1</button>
+                    <button class="calc-btn number" onclick="calculator.number('2')">2</button>
+                    <button class="calc-btn number" onclick="calculator.number('3')">3</button>
+                    
+                    <button class="calc-btn number zero" onclick="calculator.number('0')">0</button>
+                    <button class="calc-btn number" onclick="calculator.number('.')">.</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<!-- JS Terminal -->
-<script src="terminal.js"></script>
-
+    <!-- Scripts -->
+    <script src="desktop.js"></script>
+    <script src="terminal.js"></script>
 </body>
 </html>
