@@ -103,10 +103,10 @@ class Terminal {
     
     printWelcome() {
         const welcome = `
-<span class="info">Welcome to Dark Session Terminal</span>
-<span class="comment">Type 'help' to see available commands</span>
+            <span class="info">Welcome to Dark Session Terminal</span>
+            <span class="comment">Type 'help' to see available commands</span>
 
-`;
+        `;
         this.output.innerHTML = welcome;
     }
     
@@ -213,6 +213,12 @@ class Terminal {
                 break;
             case 'tree':
                 this.showTree(args[0] || this.currentPath);
+                break;
+            case 'ipconfig':
+                this.showIPConfig();
+                break;
+            case 'who':
+                this.showWho();
                 break;
             default:
                 this.appendOutput(`<span class="error">Command not found: ${cmd}</span>`);
@@ -444,14 +450,45 @@ class Terminal {
     
     showProcesses() {
         const processes = `
-  PID TTY          TIME CMD
-    1 ?        00:00:01 systemd
-  123 pts/0    00:00:00 bash
-  456 pts/0    00:00:00 terminal
-  789 pts/0    00:00:00 ps
-`;
+        PID TTY          TIME CMD
+            1 ?        00:00:01 systemd
+        123 pts/0    00:00:00 bash
+        456 pts/0    00:00:00 terminal
+        789 pts/0    00:00:00 ps
+        `;
         this.appendOutput(processes);
     }
+
+    showIPConfig() {
+    const ipInfo = `
+    Ethernet adapter Ethernet:
+
+    Connection-specific DNS Suffix  . : darksession.local
+    IPv4 Address. . . . . . . . . . . : 192.168.1.42
+    Subnet Mask . . . . . . . . . . . : 255.255.255.0
+    Default Gateway . . . . . . . . . : 192.168.1.1
+
+    Wireless LAN adapter Wi-Fi:
+
+    Connection-specific DNS Suffix  . : darksession.local
+    IPv4 Address. . . . . . . . . . . : 192.168.1.101
+    Subnet Mask . . . . . . . . . . . : 255.255.255.0
+    Default Gateway . . . . . . . . . : 192.168.1.1
+    `;
+        this.appendOutput(ipInfo);
+    }
+
+    showWho() {
+        const whoOutput = `
+        NAME       TTY       LOGIN TIME           IP
+        user1      pts/0     2025-08-20 19:45    (:0)
+        user2      pts/1     2025-08-20 20:01    (192.168.1.5)
+        admin      pts/2     2025-08-20 18:30    (10.0.0.2)
+        `;
+            this.appendOutput(whoOutput);
+        }
+
+
     
     clearTerminal() {
         this.output.innerHTML = '';
