@@ -47,6 +47,10 @@
                 <i class="fas fa-memory"></i>
                 <span>Memory Monitor</span>
             </div>
+            <div class="icon" id="notes-icon" data-app="notes">
+                <i class="fas fa-file-alt"></i>
+                <span>notes.txt</span>
+            </div>
         </div>
         
         <!-- Taskbar -->
@@ -267,6 +271,97 @@
             </div>
         </div>
     </div>
+
+    <!-- Notes Window -->
+    <div class="window" id="notes-window" data-app="notes">
+        <div class="window-header">
+            <div class="window-title">
+                <i class="fas fa-file-alt"></i>
+                <span>notes.txt</span>
+            </div>
+            <div class="window-controls">
+                <button class="window-btn minimize-btn" title="Minimize">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button class="window-btn maximize-btn" title="Maximize">
+                    <i class="fas fa-square"></i>
+                </button>
+                <button class="window-btn close-btn" title="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="window-content">
+            <textarea id="notes-content" style="width:100%; height:100%; background:#1e1e1e; color: #386641; border:none; resize:none;">
+Mesaj: 2-37-TR-A1-K.O.
+
+    Selam, Kök Kullanıcı.
+
+    Eğer bunu okuyorsan, direniş seni seçti. Dışarıdaki gökyüzü artık bizim değil; NEURANET her hareketimizi izliyor, her düşüncemizi sınıflandırıyor.
+
+    2037'nin küresel iletişim ağları bir hapishaneye dönüştü. Ve kapının anahtarı, senin kayıp kodlarında gizli. Sadece sen bu karanlığı kırabilir, insanlığın sesini yeniden yankılandırabilirsin.
+
+    ✔︎ Diren. 
+    ✔︎ Kodu kır. 
+    ✔︎ Kurtar bizi.
+        
+    1 - “Nerede olduğunu bilmeden yürüyemezsin. Önce konumunu öğren.”
+    
+    2 - “Çevrene bak. Göreceğin her şey senin hafızanın parçaları.”
+
+    3 - “NEURANET'in gözetiminden kaçınarak, bulunduğun bölgedeki en yakın iletişim kulesinin koordinatlarını bul.”
+        ✔︎ 
+            </textarea>
+        </div>
+    </div>
+
+    <!-- File System Window -->
+    <div class="window" id="filesystem-window" data-app="filesystem">
+        <div class="window-header">
+            <div class="window-title">
+                <i class="fas fa-folder"></i>
+                <span>File System</span>
+            </div>
+            <div class="window-controls">
+                <button class="window-btn minimize-btn"><i class="fas fa-minus"></i></button>
+                <button class="window-btn maximize-btn"><i class="fas fa-square"></i></button>
+                <button class="window-btn close-btn"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        <div class="window-content">
+            <div class="file-manager">
+                <!-- Path bar -->
+                <div class="file-toolbar">
+                    <button class="btn" id="fs-back"><i class="fas fa-arrow-left"></i></button>
+                    <button class="btn" id="fs-forward"><i class="fas fa-arrow-right"></i></button>
+                    <div class="path-bar">
+                        <span id="fs-current-path">/</span>
+                    </div>
+                </div>
+                <!-- File list -->
+                <div class="file-list" id="fs-file-list">
+                    <!-- Klasör ve dosyalar burada olacak -->
+                    <div class="folder" data-path="/bin">bin</div>
+                    <div class="folder" data-path="/dev">dev</div>
+                    <div class="folder" data-path="/etc">etc</div>
+                    <div class="folder" data-path="/lib">lib</div> 
+                    <div class="folder" data-path="/sbin">sbin</div>
+                    <div class="folder" data-path="/mnt">mnt</div>
+                    <div class="folder" data-path="/root">root</div>
+                    <div class="folder" data-path="/tmp">tmp</div>
+                    <div class="folder" data-path="/usr">usr</div>
+                    <div class="folder" data-path="/var">var</div>
+                    <div class="folder" data-path="/home">home</div>
+                    <div class="folder" data-path="/proc">proc</div>
+                    <div class="folder" data-path="/boot">boot</div>
+                     <div class="folder" data-path="/opt">opt</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 
     <!-- Scripts -->
     <script src="terminal.js"></script>

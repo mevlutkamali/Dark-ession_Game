@@ -96,6 +96,9 @@ class DesktopManager {
         
         // Initialize memory monitor
         window.memoryMonitor = new MemoryMonitor();
+
+        // Initialize notes.txt
+        window.notesApp = new NotesApp();
     }
     
     updateClock() {
@@ -312,7 +315,8 @@ class DesktopManager {
             'terminal': 'Terminal',
             'file-manager': 'Files',
             'text-editor': 'Editor',
-            'calculator': 'Calculator'
+            'calculator': 'Calculator',
+            'notes': 'notes.txt'
         };
         
         appElement.textContent = appNames[appName] || appName;
@@ -907,3 +911,30 @@ class MemoryMonitor {
 document.addEventListener('DOMContentLoaded', () => {
     window.desktopManager = new DesktopManager();
 });
+
+// Notes Application
+class NotesApp {
+    constructor() {
+        this.content = document.getElementById('notes-content');
+    }
+
+    getContent() {
+        return this.content ? this.content.value : '';
+    }
+
+    setContent(text) {
+        if (this.content) {
+            this.content.value = text;
+        }
+    }
+
+    saveToFile() {
+        const text = this.getContent();
+        const blob = new Blob([text], { type: 'text/plain' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'notes.txt';
+        link.click();
+    }
+}
+
