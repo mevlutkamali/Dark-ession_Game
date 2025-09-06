@@ -345,6 +345,64 @@ html, body {
     color: #ffa657;
 }
 
+/*liste*/
+.file-list ul {
+    margin: 0;
+    padding-left: 20px;
+    list-style-type: none; 
+    position: relative;
+}
+
+.file-list ul::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    border-left: 1px solid #ccc;
+    height: 100%;
+}
+
+.file-list li {
+    position: relative;
+    padding-left: 20px;
+}
+
+.file-list li::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 0;
+    width: 20px;
+border-top: 1px solid #ccc;
+}
+
+.file-list li:last-child::before {
+    border-left: none;
+}
+
+.file-name, .folder-name {
+    padding: 2px 5px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.folder-name::before {
+    content: "📁 ";
+}
+
+.file-name::before {
+    content: "📄 ";
+}
+
+.file-name-span::before {
+    content: "⚙️ ";
+}
+
+.nested {
+    display: none;
+}
+
 /* Text Editor specific styles */
 .text-editor {
     height: 100%;
@@ -494,4 +552,3 @@ html, body {
         font-size: 10px;
     }
 }
-

@@ -655,67 +655,103 @@ class SystemInfo {
 </div>
 
 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
-    <div style="border: 1px solid #555; padding: 15px; background: #2a2a2a;">
-        <h3 style="color: #00ff00; margin-top: 0;">🖥️ Sistem Bilgileri</h3>
-        <div><strong>İşletim Sistemi:</strong> Dark Session Linux 1.0</div>
-        <div><strong>Çekirdek:</strong> 5.15.0-darksession</div>
+    <div>
+        <h3 style="color: #58a6ff; margin-top: 0;">🖥️ Sistem Bilgileri</h3>
+        <div><strong>İşletim Sistemi:</strong> Dark Session Linux</div>
+        <div><strong>Çekirdek:</strong> 5.15.0-darknet</div>
         <div><strong>Mimari:</strong> x86_64</div>
-        <div><strong>Bilgisayar Adı:</strong> darksession</div>
-        <div><strong>Çalışma Süresi:</strong> 25 dakika</div>
-        <div><strong>Son Açılış:</strong> ${new Date().toLocaleDateString('tr-TR')}</div>
-    </div>
-    
-    <div style="border: 1px solid #555; padding: 15px; background: #2a2a2a;">
-        <h3 style="color: #ffa500; margin-top: 0;">⚡ Donanım</h3>
-        <div><strong>İşlemci:</strong> Dark Session Virtual CPU</div>
-        <div><strong>Çekirdek Sayısı:</strong> 4 (2 fiziksel)</div>
-        <div><strong>İşlemci Hızı:</strong> 2.40 GHz</div>
-        <div><strong>L3 Önbellek:</strong> 8 MB</div>
-        <div><strong>Teknoloji:</strong> 64-bit</div>
-        <div><strong>Virtualizasyon:</strong> Etkin</div>
-    </div>
-</div>
-
-<div style="border: 1px solid #555; padding: 15px; background: #2a2a2a; margin-bottom: 20px;">
-    <h3 style="color: #ff6b6b; margin-top: 0;">💾 Bellek Kullanımı</h3>
-    <div style="margin-bottom: 10px;">
-        <div><strong>Toplam RAM:</strong> 3.9 GB</div>
-        <div style="background: #333; height: 20px; border-radius: 10px; overflow: hidden; margin: 5px 0;">
-            <div style="background: linear-gradient(90deg, #51cf66 0%, #ffa94d 70%, #ff6b6b 100%); height: 100%; width: 38%; transition: width 0.3s;"></div>
-        </div>
-        <div><strong>Kullanılan:</strong> 1.5 GB (38%) | <strong>Boş:</strong> 2.4 GB (62%)</div>
+        <div><strong>Hostname:</strong> darksession</div>
+        <div><strong>Uptime:</strong> 42 days, 13:37:21</div>
     </div>
     
     <div>
-        <div><strong>Swap Bellek:</strong> 2.0 GB</div>
-        <div style="background: #333; height: 20px; border-radius: 10px; overflow: hidden; margin: 5px 0;">
-            <div style="background: #51cf66; height: 100%; width: 0%; transition: width 0.3s;"></div>
+        <h3 style="color: #ff6b6b; margin-top: 0;">💾 Bellek Kullanımı</h3>
+        <div style="margin-bottom: 10px;">
+            <div><strong>Toplam RAM:</strong> 3.9 GB</div>
+            <div><strong>Kullanılan:</strong> 2.1 GB (54%)</div>
+            <div><strong>Boş:</strong> 1.8 GB</div>
+            <div><strong>Cache:</strong> 512 MB</div>
         </div>
-        <div><strong>Kullanılan:</strong> 0 MB (0%) | <strong>Boş:</strong> 2.0 GB (100%)</div>
+        <div style="background: #21262d; border-radius: 4px; padding: 3px;">
+            <div style="background: #ff6b6b; height: 8px; width: 54%; border-radius: 2px;"></div>
+        </div>
     </div>
 </div>
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-    <div style="border: 1px solid #555; padding: 15px; background: #2a2a2a;">
-        <h3 style="color: #74c0fc; margin-top: 0;">🌐 Ağ Bağlantısı</h3>
-        <div><strong>Arayüz:</strong> eth0</div>
-        <div><strong>IP Adresi:</strong> 192.168.1.100</div>
-        <div><strong>Alt Ağ:</strong> 255.255.255.0</div>
-        <div><strong>Ağ Geçidi:</strong> 192.168.1.1</div>
-        <div><strong>DNS:</strong> 8.8.8.8, 8.8.4.4</div>
-        <div style="color: #51cf66;"><strong>Durum:</strong> 🟢 Bağlı</div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+    <div>
+        <h3 style="color: #ffa657; margin-top: 0;">💽 Disk Kullanımı</h3>
+        <div><strong>/</strong> (root)</div>
+        <div>Boyut: 20 GB</div>
+        <div>Kullanılan: 12.8 GB (64%)</div>
+        <div>Boş: 7.2 GB</div>
+        <div style="background: #21262d; border-radius: 4px; padding: 3px; margin: 5px 0;">
+            <div style="background: #ffa657; height: 8px; width: 64%; border-radius: 2px;"></div>
+        </div>
+        
+        <div style="margin-top: 10px;"><strong>/home</strong> (kullanıcı)</div>
+        <div>Boyut: 100 GB</div>
+        <div>Kullanılan: 23.7 GB (24%)</div>
+        <div>Boş: 76.3 GB</div>
+        <div style="background: #21262d; border-radius: 4px; padding: 3px; margin: 5px 0;">
+            <div style="background: #ffa657; height: 8px; width: 24%; border-radius: 2px;"></div>
+        </div>
     </div>
     
-    <div style="border: 1px solid #555; padding: 15px; background: #2a2a2a;">
-        <h3 style="color: #f783ac; margin-top: 0;">🔋 Güç Yönetimi</h3>
-        <div><strong>Pil Durumu:</strong> Şarj oluyor</div>
-        <div style="background: #333; height: 15px; border-radius: 8px; overflow: hidden; margin: 5px 0;">
-            <div style="background: linear-gradient(90deg, #51cf66 0%, #51cf66 100%); height: 100%; width: 87%;"></div>
-        </div>
-        <div><strong>Şarj:</strong> 87% (2 saat 34 dakika kaldı)</div>
-        <div><strong>Güç Kaynağı:</strong> AC Adaptör</div>
-        <div><strong>Sağlık:</strong> Mükemmel (94%)</div>
+    <div>
+        <h3 style="color: #56d364; margin-top: 0;">🌐 Ağ Bilgileri</h3>
+        <div><strong>Ethernet (eth0):</strong></div>
+        <div>IP: 192.168.1.42</div>
+        <div>Subnet: 255.255.255.0</div>
+        <div>Gateway: 192.168.1.1</div>
+        <div style="margin-top: 10px;"><strong>WiFi (wlan0):</strong></div>
+        <div>IP: 192.168.1.101</div>
+        <div>SSID: DarkNet_5G</div>
+        <div>Sinyal: -42 dBm (Excellent)</div>
     </div>
+</div>
+
+<div style="margin-bottom: 20px;">
+    <h3 style="color: #a78bfa; margin-top: 0;">⚡ CPU Bilgileri</h3>
+    <div><strong>İşlemci:</strong> Intel® Core™ i7-10700K CPU @ 3.80GHz</div>
+    <div><strong>Çekirdek:</strong> 8 çekirdek, 16 thread</div>
+    <div><strong>Önbellek:</strong> L1: 512 KB, L2: 2 MB, L3: 16 MB</div>
+    <div><strong>Mevcut Hız:</strong> 3.8 GHz</div>
+    <div><strong>Sıcaklık:</strong> 42°C</div>
+    
+    <div style="margin: 10px 0;">
+        <div><strong>CPU Kullanımı:</strong></div>
+        <div style="display: flex; gap: 10px; margin-top: 5px;">
+            <div style="flex: 1;">
+                <div>Core 1: 23%</div>
+                <div style="background: #21262d; border-radius: 2px; padding: 2px;">
+                    <div style="background: #a78bfa; height: 6px; width: 23%; border-radius: 1px;"></div>
+                </div>
+            </div>
+            <div style="flex: 1;">
+                <div>Core 2: 45%</div>
+                <div style="background: #21262d; border-radius: 2px; padding: 2px;">
+                    <div style="background: #a78bfa; height: 6px; width: 45%; border-radius: 1px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="border-top: 1px solid #30363d; padding-top: 15px;">
+    <h3 style="color: #e3b341; margin-top: 0;">🔐 Güvenlik Durumu</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+        <div>✅ Firewall: Active</div>
+        <div>✅ Antivirus: Protected</div>
+        <div>✅ VPN: Connected</div>
+        <div>✅ SSH: Secured</div>
+        <div>⚠️ Updates: 3 pending</div>
+        <div>✅ Backup: Current</div>
+    </div>
+</div>
+
+<div style="margin-top: 20px; text-align: center; color: #6e7681; font-style: italic;">
+Last updated: ${new Date().toLocaleString()}
 </div>
         `;
         
@@ -737,12 +773,85 @@ class MemoryMonitor {
     }
     
     startMonitoring() {
-        if (!this.content) return;
-        
         this.updateMemoryInfo();
         this.updateInterval = setInterval(() => {
             this.updateMemoryInfo();
-        }, 2000); // Her 2 saniyede bir güncelle
+        }, 2000);
+    }
+    
+    updateMemoryInfo() {
+        if (!this.content) return;
+        
+        // Simulate dynamic memory usage
+        const totalRAM = 4096;
+        const usedRAM = Math.floor(Math.random() * 1000) + 1500;
+        const freeRAM = totalRAM - usedRAM;
+        const usagePercent = Math.floor((usedRAM / totalRAM) * 100);
+        
+        const memoryInfo = `
+<div style="color: #00ff00; border: 2px solid #00ff00; padding: 15px; margin-bottom: 20px;">
+<div style="text-align: center; font-size: 18px;">████ MEMORY MONITOR ████</div>
+</div>
+
+<div style="margin-bottom: 20px;">
+    <h3 style="color: #58a6ff;">💾 RAM Kullanımı</h3>
+    <div style="font-family: monospace; background: #161b22; padding: 15px; border-radius: 6px; margin: 10px 0;">
+        <div>Toplam RAM: ${totalRAM} MB</div>
+        <div>Kullanılan:  ${usedRAM} MB</div>
+        <div>Boş:       ${freeRAM} MB</div>
+        <div>Kullanım:   ${usagePercent}%</div>
+    </div>
+    
+    <div style="background: #21262d; border-radius: 4px; padding: 3px; margin: 10px 0;">
+        <div style="background: ${usagePercent > 80 ? '#ff6b6b' : usagePercent > 60 ? '#ffa657' : '#56d364'}; height: 20px; width: ${usagePercent}%; border-radius: 2px; transition: all 0.3s ease;"></div>
+    </div>
+</div>
+
+<div style="margin-bottom: 20px;">
+    <h3 style="color: #ffa657;">📊 Süreç Listesi</h3>
+    <div style="font-family: monospace; background: #161b22; padding: 15px; border-radius: 6px;">
+        <div style="border-bottom: 1px solid #30363d; padding-bottom: 5px; margin-bottom: 10px;">
+            <strong>PID    NAME              CPU%   MEM%</strong>
+        </div>
+        <div>1234   desktop-manager   12.3   8.7</div>
+        <div>5678   terminal          2.1    3.2</div>
+        <div>9012   file-manager      1.8    2.9</div>
+        <div>3456   calculator        0.5    1.1</div>
+        <div>7890   system-monitor    3.7    4.2</div>
+        <div>2468   browser           45.2   28.6</div>
+        <div>1357   text-editor       0.9    2.3</div>
+        <div>8024   background-task   8.1    5.4</div>
+    </div>
+</div>
+
+<div style="margin-bottom: 20px;">
+    <h3 style="color: #a78bfa;">📈 Sistem Performansı</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+        <div style="background: #161b22; padding: 10px; border-radius: 6px;">
+            <div style="color: #58a6ff;"><strong>CPU Load</strong></div>
+            <div style="font-size: 24px; color: #56d364;">${(Math.random() * 30 + 20).toFixed(1)}%</div>
+        </div>
+        <div style="background: #161b22; padding: 10px; border-radius: 6px;">
+            <div style="color: #58a6ff;"><strong>Disk I/O</strong></div>
+            <div style="font-size: 24px; color: #ffa657;">${(Math.random() * 50 + 10).toFixed(1)} MB/s</div>
+        </div>
+        <div style="background: #161b22; padding: 10px; border-radius: 6px;">
+            <div style="color: #58a6ff;"><strong>Network</strong></div>
+            <div style="font-size: 24px; color: #ff6b6b;">${(Math.random() * 100 + 50).toFixed(1)} KB/s</div>
+        </div>
+        <div style="background: #161b22; padding: 10px; border-radius: 6px;">
+            <div style="color: #58a6ff;"><strong>Uptime</strong></div>
+            <div style="font-size: 18px; color: #c9d1d9;">42d 13h 37m</div>
+        </div>
+    </div>
+</div>
+
+<div style="border-top: 1px solid #30363d; padding-top: 15px; color: #6e7681; font-style: italic; text-align: center;">
+Güncelleme: ${new Date().toLocaleTimeString()}
+</div>
+        `;
+        
+        this.content.innerHTML = memoryInfo;
     }
     
     stopMonitoring() {
@@ -751,190 +860,23 @@ class MemoryMonitor {
             this.updateInterval = null;
         }
     }
-    
-    updateMemoryInfo() {
-        if (!this.content) return;
-        
-        // Rastgele değişen bellek kullanımı simülasyonu
-        const totalRam = 4048;
-        const usedRam = 1500 + Math.floor(Math.random() * 200);
-        const freeRam = totalRam - usedRam;
-        const ramUsagePercent = Math.round((usedRam / totalRam) * 100);
-        
-        const totalSwap = 2048;
-        const usedSwap = Math.floor(Math.random() * 50);
-        const freeSwap = totalSwap - usedSwap;
-        const swapUsagePercent = Math.round((usedSwap / totalSwap) * 100);
-        
-        const now = new Date().toLocaleTimeString('tr-TR');
-        
-        const memoryInfo = `
-<div style="color: #00ff00; border: 2px solid #00ff00; padding: 15px; margin-bottom: 20px;">
-<div style="text-align: center; font-size: 18px; margin-bottom: 10px;">╔══════════════════════════════════════════════════════════════╗</div>
-<div style="text-align: center; font-size: 18px; margin-bottom: 10px;">║                      HAFIZA İZLEYİCİSİ                      ║</div>
-<div style="text-align: center; font-size: 18px; margin-bottom: 10px;">╚══════════════════════════════════════════════════════════════╝</div>
-<div style="text-align: center; font-size: 14px;">Son Güncelleme: ${now}</div>
-</div>
-
-<div style="background: #2a2a2a; border: 1px solid #555; padding: 20px; margin-bottom: 20px;">
-    <h3 style="color: #ff6b6b; margin-top: 0; display: flex; align-items: center;">
-        💾 RAM Kullanımı (${ramUsagePercent}%)
-    </h3>
-    
-    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-bottom: 15px;">
-        <div style="text-align: center; background: #1e1e1e; padding: 10px; border-radius: 5px;">
-            <div style="color: #51cf66; font-size: 24px; font-weight: bold;">${totalRam} MB</div>
-            <div style="color: #ccc;">Toplam</div>
-        </div>
-        <div style="text-align: center; background: #1e1e1e; padding: 10px; border-radius: 5px;">
-            <div style="color: #ffa94d; font-size: 24px; font-weight: bold;">${usedRam} MB</div>
-            <div style="color: #ccc;">Kullanılan</div>
-        </div>
-        <div style="text-align: center; background: #1e1e1e; padding: 10px; border-radius: 5px;">
-            <div style="color: #74c0fc; font-size: 24px; font-weight: bold;">${freeRam} MB</div>
-            <div style="color: #ccc;">Boş</div>
-        </div>
-    </div>
-    
-    <div style="background: #333; height: 30px; border-radius: 15px; overflow: hidden; position: relative;">
-        <div style="background: linear-gradient(90deg, #51cf66 0%, #ffa94d 50%, #ff6b6b 100%); height: 100%; width: ${ramUsagePercent}%; transition: width 0.5s ease;"></div>
-        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-weight: bold;">${ramUsagePercent}%</div>
-    </div>
-</div>
-
-<div style="background: #2a2a2a; border: 1px solid #555; padding: 20px; margin-bottom: 20px;">
-    <h3 style="color: #74c0fc; margin-top: 0; display: flex; align-items: center;">
-        🔄 Swap Bellek (${swapUsagePercent}%)
-    </h3>
-    
-    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-bottom: 15px;">
-        <div style="text-align: center; background: #1e1e1e; padding: 10px; border-radius: 5px;">
-            <div style="color: #51cf66; font-size: 24px; font-weight: bold;">${totalSwap} MB</div>
-            <div style="color: #ccc;">Toplam</div>
-        </div>
-        <div style="text-align: center; background: #1e1e1e; padding: 10px; border-radius: 5px;">
-            <div style="color: #ffa94d; font-size: 24px; font-weight: bold;">${usedSwap} MB</div>
-            <div style="color: #ccc;">Kullanılan</div>
-        </div>
-        <div style="text-align: center; background: #1e1e1e; padding: 10px; border-radius: 5px;">
-            <div style="color: #74c0fc; font-size: 24px; font-weight: bold;">${freeSwap} MB</div>
-            <div style="color: #ccc;">Boş</div>
-        </div>
-    </div>
-    
-    <div style="background: #333; height: 30px; border-radius: 15px; overflow: hidden; position: relative;">
-        <div style="background: linear-gradient(90deg, #51cf66 0%, #74c0fc 100%); height: 100%; width: ${swapUsagePercent}%; transition: width 0.5s ease;"></div>
-        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-weight: bold;">${swapUsagePercent}%</div>
-    </div>
-</div>
-
-<div style="background: #2a2a2a; border: 1px solid #555; padding: 20px;">
-    <h3 style="color: #f783ac; margin-top: 0;">📊 Hafıza Dağılımı</h3>
-    
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-        <div>
-            <div style="margin-bottom: 10px;">
-                <div style="display: flex; justify-content: space-between;">
-                    <span style="color: #51cf66;">● Aktif Bellek</span>
-                    <span>1024 MB</span>
-                </div>
-                <div style="background: #333; height: 8px; border-radius: 4px; overflow: hidden;">
-                    <div style="background: #51cf66; height: 100%; width: 65%;"></div>
-                </div>
-            </div>
-            
-            <div style="margin-bottom: 10px;">
-                <div style="display: flex; justify-content: space-between;">
-                    <span style="color: #ffa94d;">● Önbellek</span>
-                    <span>512 MB</span>
-                </div>
-                <div style="background: #333; height: 8px; border-radius: 4px; overflow: hidden;">
-                    <div style="background: #ffa94d; height: 100%; width: 32%;"></div>
-                </div>
-            </div>
-            
-            <div style="margin-bottom: 10px;">
-                <div style="display: flex; justify-content: space-between;">
-                    <span style="color: #ff6b6b;">● Sistem</span>
-                    <span>256 MB</span>
-                </div>
-                <div style="background: #333; height: 8px; border-radius: 4px; overflow: hidden;">
-                    <div style="background: #ff6b6b; height: 100%; width: 16%;"></div>
-                </div>
-            </div>
-        </div>
-        
-        <div>
-            <div style="margin-bottom: 10px;">
-                <div style="display: flex; justify-content: space-between;">
-                    <span style="color: #74c0fc;">● Tamponlar</span>
-                    <span>128 MB</span>
-                </div>
-                <div style="background: #333; height: 8px; border-radius: 4px; overflow: hidden;">
-                    <div style="background: #74c0fc; height: 100%; width: 8%;"></div>
-                </div>
-            </div>
-            
-            <div style="margin-bottom: 10px;">
-                <div style="display: flex; justify-content: space-between;">
-                    <span style="color: #f783ac;">● Paylaşılan</span>
-                    <span>64 MB</span>
-                </div>
-                <div style="background: #333; height: 8px; border-radius: 4px; overflow: hidden;">
-                    <div style="background: #f783ac; height: 100%; width: 4%;"></div>
-                </div>
-            </div>
-            
-            <div style="margin-bottom: 10px;">
-                <div style="display: flex; justify-content: space-between;">
-                    <span style="color: #91a7ff;">● Boş</span>
-                    <span>${freeRam} MB</span>
-                </div>
-                <div style="background: #333; height: 8px; border-radius: 4px; overflow: hidden;">
-                    <div style="background: #91a7ff; height: 100%; width: ${Math.round((freeRam/totalRam)*100)}%;"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div style="margin-top: 15px; padding: 10px; background: #1e1e1e; border-radius: 5px; text-align: center;">
-        <span style="color: #00ff00;">✅ Sistem performansı optimal seviyede</span>
-    </div>
-</div>
-        `;
-        
-        this.content.innerHTML = memoryInfo;
-    }
 }
-
-// Initialize desktop manager when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    window.desktopManager = new DesktopManager();
-});
 
 // Notes Application
 class NotesApp {
     constructor() {
+        this.content = null;
+        this.init();
+    }
+    
+    init() {
         this.content = document.getElementById('notes-content');
-    }
-
-    getContent() {
-        return this.content ? this.content.value : '';
-    }
-
-    setContent(text) {
-        if (this.content) {
-            this.content.value = text;
-        }
-    }
-
-    saveToFile() {
-        const text = this.getContent();
-        const blob = new Blob([text], { type: 'text/plain' });
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = 'notes.txt';
-        link.click();
+        // Notes content is already set in HTML, no need to modify
     }
 }
 
+// Initialize desktop when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    window.desktopManager = new DesktopManager();
+    window.terminal = new Terminal();
+});
