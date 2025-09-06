@@ -1,0 +1,566 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0d1117;
+    color: #c9d1d9;
+}
+
+/* Desktop background with gradient overlay */
+.desktop {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #0d1117 0%, #161b22 25%, #21262d 75%, #30363d 100%);
+    background-attachment: fixed;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Desktop background pattern */
+.desktop::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(56, 139, 253, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(163, 113, 247, 0.1) 0%, transparent 50%);
+    animation: backgroundShift 20s ease-in-out infinite;
+}
+
+@keyframes backgroundShift {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+}
+
+/* Desktop icons container */
+.desktop-icons {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 10;
+}
+
+/* Individual desktop icon */
+.icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80px;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.icon:hover {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transform: translateY(-2px);
+}
+
+.icon i {
+    font-size: 32px;
+    margin-bottom: 5px;
+    color: #58a6ff;
+}
+
+/* Specific icon colors */
+#terminal-icon i { color: #28a745; }
+#file-manager-icon i { color: #ffc107; }
+#text-editor-icon i { color: #6f42c1; }
+#calculator-icon i { color: #17a2b8; }
+#system-info-icon i { color: #fd7e14; }
+#memory-monitor-icon i { color: #e83e8c; }
+
+.icon span {
+    font-size: 12px;
+    text-align: center;
+    color: #c9d1d9;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* Taskbar */
+.taskbar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 48px;
+    background: rgba(13, 17, 23, 0.9);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(240, 246, 252, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    z-index: 1000;
+}
+
+.taskbar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.start-button {
+    width: 40px;
+    height: 40px;
+    background: rgba(88, 166, 255, 0.2);
+    border: 1px solid rgba(88, 166, 255, 0.3);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.start-button:hover {
+    background: rgba(88, 166, 255, 0.3);
+    border-color: rgba(88, 166, 255, 0.5);
+}
+
+.start-button i {
+    color: #58a6ff;
+    font-size: 16px;
+}
+
+.taskbar-apps {
+    display: flex;
+    gap: 5px;
+}
+
+.taskbar-app {
+    height: 36px;
+    padding: 0 12px;
+    background: rgba(240, 246, 252, 0.1);
+    border: 1px solid rgba(240, 246, 252, 0.2);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 13px;
+}
+
+.taskbar-app:hover {
+    background: rgba(240, 246, 252, 0.2);
+}
+
+.taskbar-app.active {
+    background: rgba(88, 166, 255, 0.3);
+    border-color: rgba(88, 166, 255, 0.5);
+}
+
+.taskbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.system-tray {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#clock {
+    font-size: 13px;
+    font-weight: 500;
+    color: #c9d1d9;
+}
+
+/* Window styling */
+.window {
+    position: absolute;
+    min-width: 400px;
+    min-height: 300px;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    display: none;
+    z-index: 100;
+    overflow: hidden;
+}
+
+.window.active {
+    z-index: 200;
+}
+
+.window.minimized {
+    display: none;
+}
+
+.window.maximized {
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: calc(100vh - 48px) !important;
+    border-radius: 0;
+}
+
+.window-header {
+    height: 32px;
+    background: #21262d;
+    border-bottom: 1px solid #30363d;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    cursor: move;
+    user-select: none;
+}
+
+.window-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.window-title i {
+    color: #58a6ff;
+}
+
+.window-controls {
+    display: flex;
+    gap: 4px;
+}
+
+.window-btn {
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 4px;
+    background: transparent;
+    color: #8b949e;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    transition: all 0.2s ease;
+}
+
+.window-btn:hover {
+    background: rgba(240, 246, 252, 0.1);
+}
+
+.close-btn:hover {
+    background: #da3633 !important;
+    color: white;
+}
+
+.window-content {
+    height: calc(100% - 32px);
+    overflow: auto;
+    background: #0d1117;
+}
+
+/* File Manager specific styles */
+.file-manager {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.file-toolbar {
+    height: 40px;
+    background: #161b22;
+    border-bottom: 1px solid #30363d;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    gap: 8px;
+}
+
+.btn {
+    padding: 6px 12px;
+    background: #21262d;
+    border: 1px solid #30363d;
+    border-radius: 4px;
+    color: #c9d1d9;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    background: #30363d;
+    border-color: #484f58;
+}
+
+.path-bar {
+    flex: 1;
+    margin-left: 10px;
+    padding: 6px 12px;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 12px;
+}
+
+.file-list {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.file-item:hover {
+    background: rgba(88, 166, 255, 0.1);
+}
+
+.file-item i {
+    width: 16px;
+    color: #58a6ff;
+}
+
+.file-item.folder i {
+    color: #ffa657;
+}
+
+/*liste*/
+.file-list ul {
+    margin: 0;
+    padding-left: 20px;
+    list-style-type: none; 
+    position: relative;
+}
+
+.file-list ul::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    border-left: 1px solid #ccc;
+    height: 100%;
+}
+
+.file-list li {
+    position: relative;
+    padding-left: 20px;
+}
+
+.file-list li::before {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 0;
+    width: 20px;
+border-top: 1px solid #ccc;
+}
+
+.file-list li:last-child::before {
+    border-left: none;
+}
+
+.file-name, .folder-name, .file-name-span, .file-name-folder, .file-name-users, .file-name-panda {
+    padding: 2px 5px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.folder-name::before {
+    content: "📁 ";
+}
+
+.file-name::before {
+    content: "📄 ";
+}
+
+.file-name-span::before {
+    content: "⚙️ ";
+}
+
+.file-name-folder::before {
+    content: "📂 ";
+}
+
+.file-name-users::before {
+    content: "👥 ";
+}
+
+.file-name-panda::before {
+    content: "🐼 ";
+}
+
+.nested {
+    display: none;
+}
+
+/* Text Editor specific styles */
+.text-editor {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.editor-toolbar {
+    height: 40px;
+    background: #161b22;
+    border-bottom: 1px solid #30363d;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    gap: 8px;
+}
+
+#editor-content {
+    flex: 1;
+    background: #0d1117;
+    border: none;
+    outline: none;
+    color: #c9d1d9;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 15px;
+    resize: none;
+}
+
+#editor-content::placeholder {
+    color: #6e7681;
+}
+
+/* Calculator specific styles */
+.calculator {
+    padding: 20px;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.calculator-display {
+    margin-bottom: 15px;
+}
+
+#calc-display {
+    width: 100%;
+    height: 60px;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    color: #c9d1d9;
+    font-size: 24px;
+    font-family: monospace;
+    text-align: right;
+    padding: 0 15px;
+    outline: none;
+}
+
+.calculator-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.calc-btn {
+    height: 50px;
+    background: #21262d;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    color: #c9d1d9;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.calc-btn:hover {
+    background: #30363d;
+    border-color: #484f58;
+}
+
+.calc-btn.operator {
+    background: #0969da;
+    border-color: #0969da;
+    color: white;
+}
+
+.calc-btn.operator:hover {
+    background: #0860ca;
+}
+
+.calc-btn.equals {
+    background: #238636;
+    border-color: #238636;
+    color: white;
+    grid-row: span 2;
+}
+
+.calc-btn.equals:hover {
+    background: #2ea043;
+}
+
+.calc-btn.clear {
+    background: #da3633;
+    border-color: #da3633;
+    color: white;
+}
+
+.calc-btn.clear:hover {
+    background: #e5534b;
+}
+
+.calc-btn.zero {
+    grid-column: span 2;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .desktop-icons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+    }
+    
+    .window {
+        min-width: 90vw;
+        min-height: 70vh;
+        top: 5vh !important;
+        left: 5vw !important;
+    }
+    
+    .taskbar {
+        height: 60px;
+    }
+    
+    .icon {
+        width: 60px;
+    }
+    
+    .icon i {
+        font-size: 24px;
+    }
+    
+    .icon span {
+        font-size: 10px;
+    }
+}
