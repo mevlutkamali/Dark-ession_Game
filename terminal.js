@@ -135,11 +135,103 @@ ANT = Active Network Table (oyun içi özel görünüm). Bu çıktı tamamen uyd
         `;
     }
 
-    // Bilinmeyen opsiyon -> netstat benzeri hata mesajı göster
-    return `netstat: unrecognized option '${args.join(" ")}'
+         // Bilinmeyen opsiyon -> netstat benzeri hata mesajı göster
+         return `
+netstat: unrecognized option '${args.join(" ")}'
 usage: netstat [-vWeenNcCF] [<Af>] -r         netstat {-V|--version|-h|--help}
-       netstat [-vWnNcaeol] [<Socket> ...]`;
-},
+netstat [-vWnNcaeol] [<Socket> ...]
+        `;
+    },
+    
+    // theharvester
+    "theharvester": (args = []) => {
+        if (args.includes("-h") || args.includes("--help")) {
+            return `
+┏━(Message from Linux Dark$ession developers)
+┃
+┃ The command theharvester is deprecated. Please use theHarvester instead.
+┃
+┗━   
+
+Read proxies.yaml from /etc/theHarvester/proxies.yaml
+*******************************************************************
+*  _   _                                            _             *
+* | |_| |__   ___    /\\  /\\__ _ _ ____   _____  ___| |_ ___ _ __  *
+* | __|  _ \\ / _ \\  / /_/ / _\` | '__\\ \\ / / _ \\/ __| __/ _ \\ '__| *
+* | |_| | | |  __/ / __  / (_| | |   \\ V /  __/\\__ \\ ||  __/ |    *
+*  \\__|_| |_|\\___| \\/ /_/ \\__,_|_|    \\_/ \\___||___/\\__\\___|_|    *
+*                                                                 *
+* theHarvester 4.8.2                                              *
+* Coded by Christian Martorella                                   *
+* Edge-Security Research                                          *
+* cmartorella@edge-security.com                                   *
+*                                                                 *
+*******************************************************************
+
+usage: theHarvester [-h] -d DOMAIN [-l LIMIT] [-S START] [-b SOURCE]
+
+Options:
+  -d <domain>        Target domain
+  -b <source>        Data source (google, bing, linkedin, shodan, etc.)
+  -l <limit>         Maximum results to fetch
+  -f <file>          Output file
+  -h, --help         Show this help message
+  -v                 Enable verbose mode
+
+Examples:
+  theHarvester -d example.com -b google
+  theHarvester -d example.com -b linkedin -l 50
+  theHarvester -d example.com -b shodan -f results.html
+
+Notes:
+- This is a deprecated command in Kali Linux.
+- Please switch to theHarvester for updated features.
+            `;
+        } else if (args.includes("-d") && args.includes("-l") && args.includes("-b")) {
+            let domainIndex = args.indexOf("-d") + 1;
+            let limitIndex = args.indexOf("-l") + 1;
+            let sourceIndex = args.indexOf("-b") + 1;
+
+            let domain = args[domainIndex] || "undefined";
+            let limit = parseInt(args[limitIndex]) || 0;
+            let source = args[sourceIndex] || "undefined";
+
+            if (limit < 0 || limit > 1000) {
+                return "Hata: Limit 0 ile 1000 arasında olmalıdır!";
+            }
+
+                return `
+Searching ${limit} results for ${domain} using ${source}... [Simulated]
+
+[+] Found 15 subdomains:
+  - www.${domain}
+  - mail.${domain}
+  - blog.${domain}
+  - dev.${domain}
+  - shop.${domain}
+
+[+] Emails discovered:
+  - admin@${domain}
+  - info@${domain}
+  - support@${domain}
+
+[+] Hosts/IPs:
+  - 192.168.10.12
+  - 192.168.10.15
+
+[+] Open ports (simulated):
+  - 80/tcp
+  - 443/tcp
+  - 22/tcp
+
+[!] Scan complete. This is a **simulated output** for Dark$ession training game.
+            `;
+
+        } else {
+            return "Kullanım:\n theharvester -h | --help\n Geçerli format: -d DOMAIN -l LIMIT -b SOURCE";
+        }
+    },
+
 
     // cat command with Base64 decode support.
     "cat": (args) => {
