@@ -338,7 +338,7 @@ html, body {
 
 .file-item i {
     width: 16px;
-    color: #58a6ff;
+    color: #ffa657;
 }
 
 .file-item.folder i {
@@ -564,3 +564,4 @@ border-top: 1px solid #ccc;
         font-size: 10px;
     }
 }
+
