@@ -338,7 +338,7 @@ html, body {
 
 .file-item i {
     width: 16px;
-    color: #ffa657;
+    color: #58a6ff;
 }
 
 .file-item.folder i {
@@ -381,7 +381,7 @@ border-top: 1px solid #ccc;
     border-left: none;
 }
 
-.file-name, .folder-name, .file-name-span, .file-name-folder, .file-name-users, .file-name-panda {
+.file-name, .folder-name {
     padding: 2px 5px;
     cursor: pointer;
     display: inline-block;
@@ -397,18 +397,6 @@ border-top: 1px solid #ccc;
 
 .file-name-span::before {
     content: "⚙️ ";
-}
-
-.file-name-folder::before {
-    content: "📂 ";
-}
-
-.file-name-users::before {
-    content: "👥 ";
-}
-
-.file-name-panda::before {
-    content: "🐼 ";
 }
 
 .nested {
@@ -564,4 +552,3 @@ border-top: 1px solid #ccc;
         font-size: 10px;
     }
 }
-

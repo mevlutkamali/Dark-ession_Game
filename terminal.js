@@ -11,10 +11,14 @@ const fileSystem = {
 let currentDirectory = "/home/elliot";
 
 const commands = {
+    // "find" sonra geliştirilecek !!!
+
     "cd": (args) => {
 
-    },
+    }, 
+
     "pwd": () => currentDirectory,
+
     "ls": (args) => {
         if(args.includes("-la")) {
             return `
@@ -31,8 +35,33 @@ signals.txt<br>
         } else {
             return "log.txt  signals.txt";
         }
-
     },
+
+    "free": () => {
+        return `
+              total        used        free      shared  buff/cache   available
+Mem:          256G        198G         22G          2G         36G         54G
+Swap:          64G         12G         52G
+        `;
+    },
+
+    "uname": (args = []) => {
+        if (args.includes("-a")) {
+            return `
+Linux darksession 5.15.0-70-generic #77-Ubuntu SMP Tue Jul 19 16:00:00 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux
+            `;
+        }
+        return `
+Linux
+        `;
+    },
+
+    "uptime": () => {
+        return ` 
+03:06:19 up 14 years, 11 months, 26 days, 18:59, 7 users, load average: 5.32, 4.87, 4.10
+        `;
+    },
+
     "df": () => {
         return ` 
 Filesystem      1K-blocks     Used Available Use% Mounted on
@@ -44,6 +73,7 @@ tmpfs             1024000       512   1023488   1% /run
 tmpfs              512000         0    512000   0% /tmp
         `;
     },
+
         "top": () => {
         return ` 
 top - 14:10:05 up 3 days,  4:12,  3 users,  load average: 0.42, 0.35, 0.29
@@ -63,6 +93,81 @@ MiB Swap:  8192.0 total,   8192.0 free,     0.0 used.  31820.0 avail Mem
 
         `;
     },
+
+    // Sistemdeki diskleri, bölümlerini (partitions) ve bağlantı noktalarını (mount point) gösterir.
+    "lsblk": (args) => {
+        if (args.includes("-f")) {
+            return `
+NAME            FSTYPE    LABEL              UUID                                 MOUNTPOINT
+nvme0n1
+├─nvme0n1p1     ext4      BOOT               a1b2c3d4-e5f6-11ea-8b64-0242ac120002  /boot
+├─nvme0n1p2     LVM2_member vg_main_phys     f0e1d2c3-b4a5-6789-0abc-def123456789
+└─nvme0n1p3     LVM2_member vg_models_phys   0f1e2d3c-4b5a-6789-0abc-abcdef123456
+vg_main-lv_root ext4      root_fs            11111111-2222-3333-4444-555555555555  /
+vg_models-lv    xfs       models_store        22222222-3333-4444-5555-666666666666  /srv/models
+sda
+├─sda1          ext4      BOOT-RAID          aa11aa11-bb22-cc33-dd44-ee55ee55ee55  /boot-raid
+└─sda2          part
+sdf
+└─sdf1          part
+md0             ext4      factory_db_raid    fff0fff0-0ff0-1ff0-2ff0-3ff03ff03ff0  /srv/factory-db
+sdb
+└─sdb1          xfs       training_archive    aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee  /srv/training-data
+sdc
+└─sdc1          xfs       nearline_backup     bbbbbbcc-cccc-dddd-eeee-ffffffffffff  /mnt/nearline-backup
+sdd
+└─sdd1          xfs       telemetry_logs      cccccccc-dddd-eeee-ffff-111111111111  /var/log/telemetry
+sde
+└─sde1          ext4      firmware_store      dddddd11-2222-3333-4444-555555555555  /opt/firmware
+crypt-vault     crypto_LUKS vault_enc           deadbeef-dead-beef-dead-beefdeadbeef  /secure/vault
+
+            `; 
+        }
+        return `
+NAME            MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINT
+nvme0n1         259:0    0   10T  0 disk
+├─nvme0n1p1     259:1    0   256G 0 part  /boot
+├─nvme0n1p2     259:2    0   1.5T 0 part  / (vg_main/lv_root)
+└─nvme0n1p3     259:3    0   8.2T 0 part  /srv/models (lvm)
+sda              8:0    0    10T 0 disk
+├─sda1           8:1    0     1G 0 part  /boot-raid
+└─sda2           8:2    0     9T 0 part  /mnt/md0-data (part of md0)
+sdf              8:80   0    10T 0 disk
+└─sdf1           8:81   0     9T 0 part  /mnt/md0-data (part of md0)
+md0              9:0    0     9T 0 raid1 /srv/factory-db
+sdb              8:16   0    50T 0 disk
+└─sdb1           8:17   0    50T 0 part  /srv/training-data
+sdc              8:32   0    20T 0 disk
+└─sdc1           8:33   0    20T 0 part  /mnt/nearline-backup
+sdd              8:48   0     5T 0 disk
+└─sdd1           8:49   0     5T 0 part  /var/log/telemetry
+sde              8:64   0   2.5T 0 disk
+└─sde1           8:65   0   2.5T 0 part  /opt/firmware
+crypt-vault     252:0    0   10T 0 crypt /secure/vault
+
+        `; 
+    },
+
+    // journalctl komutu Linux’ta systemd tabanlı sistemlerde logları görüntülemek için kullanılan araçtır.
+    "journalctl": (args) => {
+        if (args.includes("--xe")) {
+            return ` 
+-- Logs begin at Mon 2025-09-01 --
+Apr 12 03:14:22 darksession sshd[5321]: Accepted password for ai_operator from 10.42.12.58 port 54212 ssh2
+Apr 12 03:15:47 darksession kernel: nvme0n1: firmware update applied, version v42.7
+Apr 12 03:16:01 darksession robotctl[2124]: Robot Unit #17 initialized, serial# RX-2037-17
+Apr 12 03:16:45 darksession robotctl[2124]: Robot Unit #17 arm calibration completed
+Apr 12 03:17:12 darksession factorydb[421]: AI model 'Sentinel_v9' loaded into memory (GPU: 4 of 8)
+Apr 12 03:18:03 darksession kernel: usb 1-1: USB disconnect, device number 7 (External sensor module)
+Apr 12 03:18:15 darksession sshd[5321]: Failed password for hacker from 203.0.113.77 port 60234 ssh2
+Apr 12 03:18:47 darksession robotctl[2124]: Robot Unit #42 firmware update scheduled (ETA 3m)
+Apr 12 03:19:05 darksession factorydb[421]: AI model 'Guardian_v12' inference completed on batch #128
+Apr 12 03:20:33 darksession kernel: raid1: resync started on md0
+Apr 12 03:21:01 darksession sshd[5321]: Accepted password for ai_operator from 10.42.12.58 port 54219 ssh2
+            `; 
+        }
+    },
+
     "vmstat": () => {
         return ` 
 procs -----------memory---------- ---swap-- -----io---- -system-- -------cpu-------
@@ -73,6 +178,7 @@ procs -----------memory---------- ---swap-- -----io---- -system-- -------cpu----
  0  0      0 799876  47020 393500    0    0   200    52  325  610  3  4 92  1  0  0
         `;
     },
+
     "netstat": (args) => {
     args = args || [];
 
@@ -117,7 +223,6 @@ default         203.0.113.1     0.0.0.0         eth1
 ANT = Active Network Table (oyun içi özel görünüm). Bu çıktı tamamen uydurma ve demo amaçlıdır.
         `;
     }
-
     // -r veya --route : klasik rota tablosu
     if (args.includes("-r") || args.includes("--route")) {
         return ` 
@@ -131,10 +236,8 @@ ANT = Active Network Table (oyun içi özel görünüm). Bu çıktı tamamen uyd
 | 192.168.100.0  | 192.168.50.1| 255.255.255.0  | UG    | 0   | 0      | 0    | eth2  |
 | 10.10.10.0     | 0.0.0.0     | 255.255.255.0  | U     | 0   | 0      | 0    | tun0  |
 +----------------+-------------+----------------+-------+-----+--------+------+-------+
-
         `;
     }
-
          // Bilinmeyen opsiyon -> netstat benzeri hata mesajı göster
          return `
 netstat: unrecognized option '${args.join(" ")}'
@@ -259,6 +362,7 @@ Ethernet adapter lo:
    Subnet Mask . . . . . . . . . . . : 255.0.0.0
         `;
     },
+
     "netdiscover": () => {
         return`
 Currently scanning: 192.168.1.0/24   |   Screen View: Unique Hosts
@@ -287,11 +391,12 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
         inet 127.0.0.1  netmask 255.0.0.0
         `;
     },
+
     "clear": () => {
         terminalOutput.innerHTML = "";
         return "";
     },
-    "help": () => "Kullanılabilir komutlar: pwd, ls, whoami, help",
+
     "figlet": (args) => {
         if (!args[0]) return "Kullanım: figlet <metin>";
         let text = args.join(" "); // Girilen tüm parametreleri birleştir
@@ -304,7 +409,9 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
                        |_|                              
             ${text}
         `;
-    }
+    },
+
+    "help": () => "Kullanılabilir komutlar: pwd, ls, whoami, help"
 };
 
 function runCommand(input) {
@@ -327,11 +434,9 @@ function runCommand(input) {
     terminalOutput.scrollTop = terminalOutput.scrollHeight;
 }
 
-
 terminalInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
         runCommand(terminalInput.value);
         terminalInput.value = "";
     }
 });
-
