@@ -1,0 +1,33 @@
+<!-- Arama formu -->
+<form id="searchForm"> <!-- Formun id'si "searchForm", JS tarafında bu id ile yakalayacağız -->
+  <input 
+    type="text"           <!-- Kullanıcıdan yazı (metin) girişi almak için -->
+    id="searchInput"      <!-- Bu input'a JS içinde ulaşmak için id veriyoruz -->
+    name="q"              <!-- Parametre adı "q" olacak (query kelimesinin kısaltması) -->
+    placeholder="Ara DuckDuckGo'da..."  <!-- Kutunun içinde gri renkte görünen ipucu yazısı -->
+    style="width: 60%; padding: 10px; font-size: 16px; border-radius: 25px; border: 1px solid #ccc;"
+    <!-- CSS stilleri: kutunun genişliği %60, iç boşluk 10px, yazı boyutu 16px, yuvarlatılmış köşe 25px -->
+  >
+  <button type="submit" 
+          style="padding: 10px 20px; margin-left: 5px; font-size: 16px; border-radius: 25px; border: none; background: #de5833; color: #fff; cursor: pointer;">
+    Ara <!-- Butonun üstünde görünen yazı -->
+  </button>
+</form>
+
+<script>
+// "searchForm" id'li form seçiliyor ve "submit" (gönderilme) olayına bir fonksiyon bağlanıyor
+document.getElementById("searchForm").addEventListener("submit", function(e) {
+  
+  e.preventDefault(); // Formun varsayılan davranışını (sayfa yenilenmesini) engeller
+  
+  // Kullanıcının input'a yazdığı değeri alıyoruz
+  const q = document.getElementById("searchInput").value.trim();
+  
+  if (!q) return; // Eğer input boşsa hiçbir şey yapmadan çıkıyoruz
+  
+  // Yeni sayfaya yönlendirme işlemi
+  // "search_results.html" dosyasına gidiyoruz ve aranan kelimeyi URL'ye ekliyoruz (?q=...)
+  window.location.href = "search_results.html?q=" + encodeURIComponent(q);
+  // encodeURIComponent() → Türkçe karakterler veya boşlukları güvenli URL haline dönüştürür
+});
+</script>

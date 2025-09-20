@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kullanıcı Girişi</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #1e1e2f;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .login-container {
+      background: #2c2c3e;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      width: 300px;
+      text-align: center;
+    }
+    .login-container h2 {
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    .login-container input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+    }
+    .login-container input[type="text"],
+    .login-container input[type="password"] {
+      background: #3a3a4f;
+      color: #fff;
+    }
+    .login-container button {
+      width: 100%;
+      padding: 10px;
+      background: #de5833;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .login-container button:hover {
+      background: #ff704d;
+    }
+    .login-container a {
+      display: block;
+      margin-top: 15px;
+      color: #bbb;
+      font-size: 14px;
+      text-decoration: none;
+    }
+    .login-container a:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Kullanıcı Girişi</h2>
+    <form action="dashboard.html" method="POST">
+      <input type="text" name="username" placeholder="Kullanıcı Adı" required>
+      <input type="password" name="password" placeholder="Şifre" required>
+      <button type="submit">Giriş Yap</button>
+    </form>
+    <a href="#">Şifremi unuttum</a>
+  </div>
+</body>
+</html>

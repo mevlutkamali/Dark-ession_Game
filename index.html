@@ -51,6 +51,11 @@
                 <i class="fas fa-file-alt"></i>
                 <span>notes.txt</span>
             </div>
+
+            <div class="icon" id="firefox-icon" data-app="firefox">
+                <i class="fa-brands fa-firefox-browser"></i>
+                <span>Firefox</span>
+            </div>
         </div>
         
         <!-- Taskbar -->
@@ -721,63 +726,141 @@
     ✔︎ Kurtar bizi.
 
 
-🖥 Görevler (Terminal de çalışın)
-        
-    1 - "Nerede olduğunu bilmeden yürüyemezsin. Önce konumunu öğren."
-        ✔︎ pwd
-    
-    2 - "Çevrene bak. Göreceğin her şey senin hafızanın parçaları."
-        ✔︎ ls -la
+1) Nerede olduğunu bilmeden yürüyemezsin. Önce konumunu öğren.
+   Komut: pwd
+   Beklenen: /home/elliot
 
-    3 - "NEURANET'in gözetiminden kaçınarak, bulunduğun bölgedeki en yakın iletişim kulesinin koordinatlarını bul."
-        ✔︎ grep "kule" *.log
+2) Çevrene bak. Göreceğin her şey senin hafızanın parçaları.
+   Komut: ls -la
+   Beklenen: log.txt  signals.txt  .hidden  (detaylı liste)
 
-    4 - "NEURANET'in boğduğu zayıf direniş sinyalini güçlendir."
-        ✔︎
-        
-    5 - "Scripti çalıştır ve kodu kır. Kapıları aç."       
-        ✔︎ chmod +x access.sh
-          ./access.sh
+3) NEURANET'in gözetiminden kaçınarak, bulunduğun bölgedeki en yakın iletişim kulesinin koordinatlarını bul.
+   Komut: grep "kule" *.log
+   Beklenen: Iletişim kuleleri: kule-34.56, kule-78.91
 
-    6 - "Gizli veriyi ortaya çıkar."
-        ✔︎ ls -a
+4) Direnişin zayıf sinyalini güçlendir — sinyali boost et ve onay al.
+   Komut: echo "sinyal=guc; kanal=7"    (veya) echo "sinyal güçlendirildi"
+   Beklenen: sinyal=guc; kanal=7  (oyun içi tetikleme/ipuçu)
 
-    7 - "Şifrelenmiş mesajı çöz."
-        ✔︎ cat encoded.txt | base64 -d
+5) Scripti çalıştır ve kapıları aç.
+   Komut: chmod +x access.sh
+           ./access.sh
+   Beklenen: Kapılar açılıyor... Sistem devre dışı!
 
-    8 - "Direnişin notlarını oku."
-        ✔︎ less mission.log
+6) Gizli veriyi ortaya çıkar.
+   Komut: ls -a
+   Beklenen: log.txt  signals.txt  .hidden  encoded.txt  mission.log  password.txt  (gizli dosyalar görünür)
 
-    9 - "Doğru dosyayı bul."
-        ✔︎ find . -name "*.key"
+7) Şifrelenmiş mesajı çöz.
+   Komut: cat encoded.txt | base64 -d
+   Beklenen: (çözülen mesaj metni — örn. "Direniş buradaydı, ama mesaj gizlenmiş...")
 
-    10 - "Anahtarı kullanarak kilidi aç."
-        ✔︎ cat .hidden/master.key
+8) Direnişin notlarını oku.
+   Komut: less mission.log
+   Beklenen: İletişim kuleleri: kule-34.56, kule-78.91
+               Direniş izleniyor...
 
-    11 - "Hafıza defterini kontrol et."
-        ✔︎ head -n 5 diary.txt
+9) Doğru dosyayı bul (.key uzantılı anahtar).
+   Komut: find . -name "*.key"
+   Not: find komutu için tırnaklı yaz (yoksa oyununda eşleşmeyebilir).
+   Beklenen: ./.hidden/master.key
 
-    12 - "Görünmeyeni bul."
-        ✔︎ grep -R "NEURANET" .
+10) Anahtarı kullanarak kilidi aç.
+    Komut: cat .hidden/master.key
+    Beklenen: ANAHTAR: ZY9-SECRET-KEY-77
 
-    13 - "Gizli dizine gir."
-        ✔︎ cd .hidden
+11) Hafıza defterini kontrol et (ilk 5 satırı oku).
+    Komut: head -n 5 diary.txt
+    Beklenen: 1. gün: NEURANET baskısı arttı
+              2. gün: Direniş mesajı gizlendi
+              3. gün: Umut kaybolmamalı
+              4. gün: Anahtar gizli dizinde
+              5. gün: Final yaklaşmakta
 
-    14 - "İpucu için en son logu oku."
-        ✔︎ tail -n 3 system.log
+12) Görünmeyeni bul — sistem genelinde NEURANET geçen satırları ara.
+    Komut: grep -R "NEURANET" .
+    Beklenen: (system.log veya başka dosyalarda NEURANET ile ilgili satırlar listelenecek)
 
-    15 - "Sistemde kim var?"
-        ✔︎ whoami
+13) Gizli dizine gir.
+    Komut: cd .hidden
+    Beklenen: (komut sonrası `pwd` ile /home/elliot/.hidden görünmeli)
 
-    16 - "Şifreyi kırmak için ipucu al."
-        ✔︎ cat password.txt | cut -d ":" -f2
+14) İpucu için en son logu oku.
+    Komut: tail -n 3 system.log
+    Beklenen: (son 3 satır; örn. "Apr 12 ... Accepted password for ai_operator", "Failed password for hacker ...")
 
-    17 - "Ana şifreyi test et."
-        ✔︎ echo "shadowkey1984" | sha256sum
+15) Sistemde kim var? (kullanıcı adını öğren)
+    Komut: whoami
+    Beklenen: elliot   (veya player — senin simülasyona göre)
 
-    18 - "Son mesajı oku, yeni görev seni bekliyor."
-        ✔︎ cat final_message.txt
+16) Şifreyi test et ve son mesajı oku.
+    Adım A - Şifre ipucunu al:
+      Komut: cat password.txt | cut -d ":" -f2
+      Beklenen: shadowkey1984
+
+    Adım B - Ana şifreyi test et (hash kontrolü):
+      Komut: echo "shadowkey1984" | sha256sum
+      Beklenen: (simüle edilmiş hash; doğruysa sonraki adıma geç)
+
+    Adım C - Final mesajını oku:
+      Komut: cat final_message.txt
+      Beklenen: Tebrikler! Görevi tamamladın. Yeni bir kapı seni bekliyor...
             </textarea>
+        </div>
+    </div>
+
+    <!--Web Browser-->
+    <div class="window" id="firefox-window" data-app="firefox">
+        <div class="window-header">
+            <div class="window-title">
+                <i class="fa-brands fa-firefox-browser"></i>
+                <span>Firefox</span>
+            </div>
+            <div class="window-controls">
+                <button class="window-btn minimize-btn" title="Minimize">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button class="window-btn maximize-btn" title="Maximize">
+                    <i class="fas fa-square"></i>
+                </button>
+                <button class="window-btn close-btn" title="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="window-content" style="text-align: center; padding: 40px;">
+            <!-- DuckDuckGo logosu -->
+            <img src="https://duckduckgo.com/assets/logo_homepage.normal.v108.svg" alt="DuckDuckGo" style="width:150px; margin-bottom:20px;">
+            
+            <!-- Arama formu -->
+            <form id="searchForm">
+    <input 
+        type="text" 
+        name="q" 
+        id="searchInput"
+        placeholder="Ara DuckDuckGo'da..." 
+        style="width: 60%; padding: 10px; font-size: 16px; border-radius: 25px; border: 1px solid #ccc;"
+    >
+    <button type="submit" 
+            style="padding: 10px 20px; margin-left: 5px; font-size: 16px; border-radius: 25px; border: none; background: #de5833; color: #fff; cursor: pointer;">
+        Ara
+    </button>
+</form>
+
+<script>
+document.getElementById("searchForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // Sayfa yenilenmesin
+    const q = document.getElementById("searchInput").value.trim();
+    if (!q) return;
+
+    // Yeni sekmede aç
+    const url = "search_results.html?q=" + encodeURIComponent(q);
+    window.open(url, "_blank"); // "_blank" = yeni sekme
+});
+</script>
+
+
+
         </div>
     </div>
 
