@@ -1,78 +1,341 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kullanıcı Girişi</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>Hyperion_AI</title>
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #1e1e2f;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+    /* ================= Temel Reset ================= */
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
     }
-    .login-container {
-      background: #2c2c3e;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-      width: 300px;
-      text-align: center;
+
+    body {
+      color: #333;
+      background: #f5f5f5;
     }
-    .login-container h2 {
+
+    /* ================= Navbar ================= */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 50px;
       color: #fff;
-      margin-bottom: 20px;
+      background: #1e1e1e;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
-    .login-container input {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: none;
-      border-radius: 8px;
-      outline: none;
+
+    .navbar .logo {
+      font-size: 24px;
+      font-weight: bold;
     }
-    .login-container input[type="text"],
-    .login-container input[type="password"] {
-      background: #3a3a4f;
+
+    .navbar ul {
+      gap: 20px;
+      display: flex;
+      list-style: none;
+    }
+
+    .navbar ul li a {
       color: #fff;
+      font-weight: 500;
+      text-decoration: none;
+      transition: 0.3s;
     }
-    .login-container button {
-      width: 100%;
-      padding: 10px;
+
+    .navbar ul li a:hover {
+      color: #de5833;
+    }
+
+    .navbar .btn {
+      cursor: pointer;
+      color: #fff;
       background: #de5833;
       border: none;
-      border-radius: 8px;
+      border-radius: 25px;
+      padding: 8px 16px;
+      transition: 0.3s;
+      margin-left: 5px;
+    }
+
+    .navbar .btn:hover {
+      background: #bf4e2c;
+    }
+
+    /* ================= Hero Section ================= */
+    .hero {
+      display: flex;
+      text-align: center;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      height: 80vh;
+      padding: 0 20px;
       color: #fff;
-      font-size: 16px;
-      cursor: pointer;
+      background: linear-gradient(135deg, #1e1e1e, #333);
     }
-    .login-container button:hover {
-      background: #ff704d;
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
     }
-    .login-container a {
-      display: block;
-      margin-top: 15px;
-      color: #bbb;
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    /* ================= Features Section ================= */
+    .features {
+      padding: 80px 20px;
+      text-align: center;
+      background: #fff;
+    }
+
+    .features h2 {
+      font-size: 36px;
+      margin-bottom: 40px;
+    }
+
+    .feature-items {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .feature {
+      background: #f5f5f5;
+      padding: 30px;
+      border-radius: 12px;
+      width: 280px;
+      transition: 0.3s;
+    }
+
+    .feature:hover {
+      background: #eaeaea;
+      transform: translateY(-5px);
+    }
+
+    .feature i {
+      font-size: 40px;
+      color: #de5833;
+      margin-bottom: 20px;
+    }
+
+    .feature h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    /* ================= Contact Section ================= */
+    .contact {
+      background: #1e1e1e;
+      color: #fff;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .contact p {
+      margin-bottom: 20px;
+    }
+
+    .contact .btn {
+      background: #de5833;
+      padding: 10px 20px;
+      border-radius: 25px;
+    }
+
+    /* ================= Footer ================= */
+    .footer {
+      background: #111;
+      color: #aaa;
+      text-align: center;
+      padding: 20px;
       font-size: 14px;
-      text-decoration: none;
     }
-    .login-container a:hover {
+
+    /* ================= Modal (Admin Login) ================= */
+    .modal {
+      display: none; /* Başlangıçta gizli */
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 20px;
+      width: 300px;
+      border-radius: 10px;
+      text-align: center;
+      position: relative;
+    }
+
+    .modal-content h2 {
+      margin-bottom: 20px;
+    }
+
+    .modal-content input {
+      width: 90%;
+      padding: 8px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .modal-content button {
+      background: #de5833;
       color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .modal-content button:hover {
+      background: #bf4e2c;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 20px;
+      cursor: pointer;
+      color: red;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
-  <div class="login-container">
-    <h2>Kullanıcı Girişi</h2>
-    <form action="dashboard.html" method="POST">
-      <input type="text" name="username" placeholder="Kullanıcı Adı" required>
-      <input type="password" name="password" placeholder="Şifre" required>
-      <button type="submit">Giriş Yap</button>
-    </form>
-    <a href="#">Şifremi unuttum</a>
+
+  <!--================= Navbar =================-->
+  <div class="navbar">
+    <div class="logo">Hyperion_AI</div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#features">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div>
+      <button class="btn">Sign Up</button>
+      <button id="signupBtn" class="btn">Login</button>
+    </div>
   </div>
+
+  <!-- Modal -->
+  <div class="modal" id="loginModal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeModal">&times;</span>
+      <h2>Admin Login</h2>
+      <input type="text" id="username" placeholder="Kullanıcı Adı">
+      <input type="password" id="password" placeholder="Şifre">
+      <button id="loginBtn">Giriş</button>
+      <p id="message"></p>
+    </div>
+  </div>
+
+  <!--================= Hero Section =================-->
+  <div class="hero" id="home">
+    <h1>Welcome to Hyperion_AI</h1>
+    <p>Your gateway to advanced AI solutions.</p>
+    <button class="btn">Get Started</button>
+  </div>
+
+  <!--================= Features Section =================-->
+  <div class="features" id="features">
+    <h2>Our Services</h2>
+    <div class="feature-items">
+      <div class="feature">
+        <i class="fas fa-robot"></i>
+        <h3>AI Automation</h3>
+        <p>Optimize your business with smart AI-powered automation tools.</p>
+      </div>
+      <div class="feature">
+        <i class="fas fa-brain"></i>
+        <h3>Machine Learning</h3>
+        <p>Train models to understand and predict with high accuracy.</p>
+      </div>
+      <div class="feature">
+        <i class="fas fa-chart-line"></i>
+        <h3>Data Analytics</h3>
+        <p>Turn raw data into meaningful insights for your business.</p>
+      </div>
+    </div>
+  </div>
+
+  <!--================= Contact Section =================-->
+  <div class="contact" id="contact">
+    <h2>Get in Touch</h2>
+    <p>Have a question or want to work with us?</p>
+    <button class="btn">Contact Us</button>
+  </div>
+
+  <!--================= Footer =================-->
+  <div class="footer">
+    <p>&copy; 2025 Hyperion_AI. All Rights Reserved.</p>
+  </div>
+
+  <script>
+    const signupBtn = document.getElementById("signupBtn");
+    const modal = document.getElementById("loginModal");
+    const closeModal = document.getElementById("closeModal");
+    const loginBtn = document.getElementById("loginBtn");
+    const message = document.getElementById("message");
+
+    // Butona tıklanınca modal aç
+    signupBtn.addEventListener("click", () => {
+      modal.style.display = "flex";
+    });
+
+    // X'e tıklayınca kapat
+    closeModal.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+
+    // Modal dışına tıklanınca kapat
+    window.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.style.display = "none";
+      }
+    });
+
+    // Giriş kontrolü
+    loginBtn.addEventListener("click", () => {
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+
+      if (user === "admin" && pass === "1234") {
+        message.style.color = "green";
+        message.textContent = "Giriş başarılı! ✅";
+        // burada yönlendirme de yapabilirsin: window.location.href = "admin.html";
+      } else {
+        message.style.color = "red";
+        message.textContent = "Hatalı kullanıcı adı veya şifre ❌";
+      }
+    });
+  </script>
+
 </body>
 </html>

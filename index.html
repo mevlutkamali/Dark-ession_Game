@@ -811,6 +811,7 @@
 
     <!--Web Browser-->
     <div class="window" id="firefox-window" data-app="firefox">
+        <!-- Pencere başlığı -->
         <div class="window-header">
             <div class="window-title">
                 <i class="fa-brands fa-firefox-browser"></i>
@@ -828,41 +829,55 @@
                 </button>
             </div>
         </div>
-        <div class="window-content" style="text-align: center; padding: 40px;">
-            <!-- DuckDuckGo logosu -->
-            <img src="https://duckduckgo.com/assets/logo_homepage.normal.v108.svg" alt="DuckDuckGo" style="width:150px; margin-bottom:20px;">
-            
-            <!-- Arama formu -->
-            <form id="searchForm">
-    <input 
-        type="text" 
-        name="q" 
-        id="searchInput"
-        placeholder="Ara DuckDuckGo'da..." 
-        style="width: 60%; padding: 10px; font-size: 16px; border-radius: 25px; border: 1px solid #ccc;"
-    >
-    <button type="submit" 
-            style="padding: 10px 20px; margin-left: 5px; font-size: 16px; border-radius: 25px; border: none; background: #de5833; color: #fff; cursor: pointer;">
-        Ara
-    </button>
-</form>
 
-<script>
-document.getElementById("searchForm").addEventListener("submit", function(e) {
-    e.preventDefault(); // Sayfa yenilenmesin
-    const q = document.getElementById("searchInput").value.trim();
-    if (!q) return;
+        <!-- Pencere içeriği -->
+        <div class="window-content" style="display: flex; flex-direction: column; height: 100%;">
+            <!-- Başlangıç ekranı (DuckDuckGo logosu + arama) -->
+            <div id="search-start" style="text-align: center; padding: 40px;">
+                <img src="https://duckduckgo.com/assets/logo_homepage.normal.v108.svg" 
+                    alt="DuckDuckGo" 
+                    style="width: 150px; margin-bottom: 20px;">
 
-    // Yeni sekmede aç
-    const url = "search_results.html?q=" + encodeURIComponent(q);
-    window.open(url, "_blank"); // "_blank" = yeni sekme
-});
-</script>
+                <form id="searchForm" style="display: flex; justify-content: center; gap: 10px;">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Ara DuckDuckGo'da..." 
+                        style="width: 300px; padding: 10px; font-size: 16px; border-radius: 25px; border: 1px solid #ccc;"
+                    >
+                    <button type="submit" 
+                            style="padding: 10px 20px; font-size: 16px; border-radius: 25px; border: none; background: #de5833; color: #fff; cursor: pointer;">
+                        Ara
+                    </button>
+                </form>
+            </div>
 
-
-
+            <!-- Arama sonuçları iframe'i -->
+            <iframe id="searchResultsFrame" style="flex: 1; width: 100%; border: none; display: none;"></iframe>
         </div>
+
+        <script>
+            const searchForm = document.getElementById("searchForm");
+            const searchInput = document.getElementById("searchInput");
+            const searchResultsFrame = document.getElementById("searchResultsFrame");
+            const searchStart = document.getElementById("search-start");
+
+            searchForm.addEventListener("submit", function(event) {
+                event.preventDefault(); // Sayfa yenilenmesini engelle
+
+                const query = searchInput.value.trim();
+                if (!query) return;
+
+                // iframe’de arama sonuçlarını yükle
+                searchResultsFrame.src = "search_results.html?q=" + encodeURIComponent(query);
+
+                // Başlangıç ekranını gizle, iframe’i göster
+                searchStart.style.display = "none";
+                searchResultsFrame.style.display = "block";
+            });
+        </script>
     </div>
+
 
     <!-- Scripts -->
     <script src="terminal.js"></script>
