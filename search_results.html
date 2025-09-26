@@ -1,234 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <title>Hyperion_AI</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<title>Hyperion_AI</title>
 
-  <style>
-    /* ================= Temel Reset ================= */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
+<style>
+  /* ================= Temel Reset ================= */
+  * { margin:0; padding:0; box-sizing:border-box; font-family:Arial,sans-serif; }
+  body { color:#333; background:#f5f5f5; }
 
-    body {
-      color: #333;
-      background: #f5f5f5;
-    }
+  /* ================= Navbar ================= */
+  .navbar {
+    display:flex; align-items:center; justify-content:space-between;
+    padding:15px 50px; color:#fff; background:#1e1e1e;
+    position:sticky; top:0; z-index:1000;
+  }
+  .navbar .logo { font-size:24px; font-weight:bold; }
+  .navbar ul { display:flex; gap:20px; list-style:none; }
+  .navbar ul li a { color:#fff; font-weight:500; text-decoration:none; transition:0.3s; }
+  .navbar ul li a:hover { color:#de5833; }
+  .navbar .btn {
+    cursor:pointer; color:#fff; background:#de5833; border:none;
+    border-radius:25px; padding:8px 16px; transition:0.3s; margin-left:5px;
+  }
+  .navbar .btn:hover { background:#bf4e2c; }
 
-    /* ================= Navbar ================= */
-    .navbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 15px 50px;
-      color: #fff;
-      background: #1e1e1e;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
+  /* ================= Hero Section ================= */
+  .hero {
+    display:flex; text-align:center; align-items:center; flex-direction:column;
+    justify-content:center; height:80vh; padding:0 20px; color:#fff;
+    background:linear-gradient(135deg, #1e1e1e, #333);
+  }
+  .hero h1 { font-size:48px; margin-bottom:20px; }
+  .hero p { font-size:20px; margin-bottom:30px; }
 
-    .navbar .logo {
-      font-size: 24px;
-      font-weight: bold;
-    }
+  /* ================= Fake Search Engine ================= */
+  .fake-search-engine {
+    position:fixed; top:0; left:0; width:100%;
+    background:#1e1e1e; padding:15px 0; z-index:9999;
+    display:flex; justify-content:center; align-items:center; gap:10px;
+  }
+  .fake-search-engine input {
+    width:400px; padding:10px 15px; border-radius:25px; border:none; font-size:16px;
+  }
+  .fake-search-engine button {
+    padding:10px 20px; border-radius:25px; border:none;
+    background:#de5833; color:white; cursor:pointer; font-size:16px;
+  }
+  .fake-search-engine button:hover { background:#bf4e2c; }
+  #fakeResults {
+    position:fixed; top:60px; left:50%; transform:translateX(-50%);
+    background:#fff; width:500px; max-height:300px; overflow-y:auto;
+    box-shadow:0 5px 15px rgba(0,0,0,0.3); border-radius:10px;
+    display:none; z-index:9998; padding:10px;
+  }
+  #fakeResults a { display:block; padding:8px 5px; color:#de5833; text-decoration:none; }
+  #fakeResults a:hover { background:#f0f0f0; }
 
-    .navbar ul {
-      gap: 20px;
-      display: flex;
-      list-style: none;
-    }
+  /* ================= Features Section ================= */
+  .features { padding:80px 20px; text-align:center; background:#fff; }
+  .features h2 { font-size:36px; margin-bottom:40px; }
+  .feature-items { display:flex; gap:30px; flex-wrap:wrap; justify-content:center; }
+  .feature { background:#f5f5f5; padding:30px; border-radius:12px; width:280px; transition:0.3s; }
+  .feature:hover { background:#eaeaea; transform:translateY(-5px); }
+  .feature i { font-size:40px; color:#de5833; margin-bottom:20px; }
+  .feature h3 { font-size:22px; margin-bottom:10px; }
 
-    .navbar ul li a {
-      color: #fff;
-      font-weight: 500;
-      text-decoration: none;
-      transition: 0.3s;
-    }
+  /* ================= Contact Section ================= */
+  .contact { background:#1e1e1e; color:#fff; padding:60px 20px; text-align:center; }
+  .contact h2 { font-size:32px; margin-bottom:20px; }
+  .contact p { margin-bottom:20px; }
+  .contact .btn { background:#de5833; padding:10px 20px; border-radius:25px; }
 
-    .navbar ul li a:hover {
-      color: #de5833;
-    }
+  /* ================= Footer ================= */
+  .footer { background:#111; color:#aaa; text-align:center; padding:20px; font-size:14px; }
 
-    .navbar .btn {
-      cursor: pointer;
-      color: #fff;
-      background: #de5833;
-      border: none;
-      border-radius: 25px;
-      padding: 8px 16px;
-      transition: 0.3s;
-      margin-left: 5px;
-    }
-
-    .navbar .btn:hover {
-      background: #bf4e2c;
-    }
-
-    /* ================= Hero Section ================= */
-    .hero {
-      display: flex;
-      text-align: center;
-      align-items: center;
-      flex-direction: column;
-      justify-content: center;
-      height: 80vh;
-      padding: 0 20px;
-      color: #fff;
-      background: linear-gradient(135deg, #1e1e1e, #333);
-    }
-
-    .hero h1 {
-      font-size: 48px;
-      margin-bottom: 20px;
-    }
-
-    .hero p {
-      font-size: 20px;
-      margin-bottom: 30px;
-    }
-
-    /* ================= Features Section ================= */
-    .features {
-      padding: 80px 20px;
-      text-align: center;
-      background: #fff;
-    }
-
-    .features h2 {
-      font-size: 36px;
-      margin-bottom: 40px;
-    }
-
-    .feature-items {
-      display: flex;
-      gap: 30px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .feature {
-      background: #f5f5f5;
-      padding: 30px;
-      border-radius: 12px;
-      width: 280px;
-      transition: 0.3s;
-    }
-
-    .feature:hover {
-      background: #eaeaea;
-      transform: translateY(-5px);
-    }
-
-    .feature i {
-      font-size: 40px;
-      color: #de5833;
-      margin-bottom: 20px;
-    }
-
-    .feature h3 {
-      font-size: 22px;
-      margin-bottom: 10px;
-    }
-
-    /* ================= Contact Section ================= */
-    .contact {
-      background: #1e1e1e;
-      color: #fff;
-      padding: 60px 20px;
-      text-align: center;
-    }
-
-    .contact h2 {
-      font-size: 32px;
-      margin-bottom: 20px;
-    }
-
-    .contact p {
-      margin-bottom: 20px;
-    }
-
-    .contact .btn {
-      background: #de5833;
-      padding: 10px 20px;
-      border-radius: 25px;
-    }
-
-    /* ================= Footer ================= */
-    .footer {
-      background: #111;
-      color: #aaa;
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-    }
-
-    /* ================= Modal (Admin Login) ================= */
-    .modal {
-      display: none; /* Başlangıçta gizli */
-      position: fixed;
-      z-index: 2000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.7);
-      justify-content: center;
-      align-items: center;
-    }
-
-    .modal-content {
-      background: #fff;
-      padding: 20px;
-      width: 300px;
-      border-radius: 10px;
-      text-align: center;
-      position: relative;
-    }
-
-    .modal-content h2 {
-      margin-bottom: 20px;
-    }
-
-    .modal-content input {
-      width: 90%;
-      padding: 8px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    .modal-content button {
-      background: #de5833;
-      color: #fff;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    .modal-content button:hover {
-      background: #bf4e2c;
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 20px;
-      cursor: pointer;
-      color: red;
-      font-weight: bold;
-    }
-  </style>
+  /* ================= Modal (Admin Login) ================= */
+  .modal { display:none; position:fixed; z-index:2000; left:0; top:0; width:100%; height:100%; background:rgba(0,0,0,0.7); justify-content:center; align-items:center; }
+  .modal-content { background:#fff; padding:20px; width:300px; border-radius:10px; text-align:center; position:relative; }
+  .modal-content h2 { margin-bottom:20px; }
+  .modal-content input { width:90%; padding:8px; margin:8px 0; border:1px solid #ccc; border-radius:5px; }
+  .modal-content button { background:#de5833; color:#fff; border:none; padding:10px 15px; border-radius:5px; cursor:pointer; margin-top:10px; }
+  .modal-content button:hover { background:#bf4e2c; }
+  .close-btn { position:absolute; top:10px; right:15px; font-size:20px; cursor:pointer; color:red; font-weight:bold; }
+</style>
 </head>
 <body>
+
+  <!--================= Fake Search Engine =================-->
+  <div class="fake-search-engine">
+    <input type="text" id="fakeSearchInput" placeholder="Search...">
+    <button id="fakeSearchBtn">Search</button>
+  </div>
+  <div id="fakeResults"></div>
 
   <!--================= Navbar =================-->
   <div class="navbar">
@@ -297,45 +163,54 @@
     <p>&copy; 2025 Hyperion_AI. All Rights Reserved.</p>
   </div>
 
-  <script>
-    const signupBtn = document.getElementById("signupBtn");
-    const modal = document.getElementById("loginModal");
-    const closeModal = document.getElementById("closeModal");
-    const loginBtn = document.getElementById("loginBtn");
-    const message = document.getElementById("message");
+<script>
+  // ================= Modal Giriş =================
+  const signupBtn = document.getElementById("signupBtn");
+  const modal = document.getElementById("loginModal");
+  const closeModal = document.getElementById("closeModal");
+  const loginBtn = document.getElementById("loginBtn");
+  const message = document.getElementById("message");
 
-    // Butona tıklanınca modal aç
-    signupBtn.addEventListener("click", () => {
-      modal.style.display = "flex";
-    });
+  signupBtn.addEventListener("click", () => { modal.style.display = "flex"; });
+  closeModal.addEventListener("click", () => { modal.style.display = "none"; });
+  window.addEventListener("click", (e) => { if(e.target === modal){ modal.style.display="none"; } });
 
-    // X'e tıklayınca kapat
-    closeModal.addEventListener("click", () => {
-      modal.style.display = "none";
-    });
+  loginBtn.addEventListener("click", () => {
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
+    if(user==="admin" && pass==="1234"){
+      message.style.color="green"; message.textContent="Giriş başarılı! ✅";
+    } else {
+      message.style.color="red"; message.textContent="Hatalı kullanıcı adı veya şifre ❌";
+    }
+  });
 
-    // Modal dışına tıklanınca kapat
-    window.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        modal.style.display = "none";
-      }
-    });
+  // ================= Fake Search Engine =================
+  const fakeSearchBtn = document.getElementById("fakeSearchBtn");
+  const fakeInput = document.getElementById("fakeSearchInput");
+  const fakeResults = document.getElementById("fakeResults");
 
-    // Giriş kontrolü
-    loginBtn.addEventListener("click", () => {
-      const user = document.getElementById("username").value;
-      const pass = document.getElementById("password").value;
+  const tasks = [
+    { command:"SELECT * FROM users", result:"Sahte Kullanıcı Tablosu: admin, user1, guest" },
+    { command:"' OR '1'='1", result:"SQL Injection başarılı! Şifreler görünmez ama test geçildi ✅" },
+    { command:"DROP TABLE users", result:"Sahte uyarı: Tablo silme denemesi engellendi ❌" },
+    { command:"hack admin", result:"Admin paneline sahte erişim açıldı!" },
+    { command:"help", result:"Desteklenen görevler: SELECT, OR, DROP, hack, help" }
+  ];
 
-      if (user === "admin" && pass === "1234") {
-        message.style.color = "green";
-        message.textContent = "Giriş başarılı! ✅";
-        // burada yönlendirme de yapabilirsin: window.location.href = "admin.html";
-      } else {
-        message.style.color = "red";
-        message.textContent = "Hatalı kullanıcı adı veya şifre ❌";
-      }
-    });
-  </script>
+  fakeSearchBtn.addEventListener("click", ()=>{
+    const query = fakeInput.value.trim().toLowerCase();
+    fakeResults.innerHTML="";
+    const matched = tasks.filter(t => t.command.toLowerCase()===query);
+    if(matched.length===0){ fakeResults.innerHTML="<p>No results found ❌</p>"; }
+    else{ matched.forEach(m=>{ const div=document.createElement("div"); div.textContent=m.result; div.style.padding="8px 5px"; fakeResults.appendChild(div); }); }
+    fakeResults.style.display="block";
+  });
+
+  window.addEventListener("click", (e)=>{
+    if(!e.target.closest('.fake-search-engine') && !e.target.closest('#fakeResults')) { fakeResults.style.display="none"; }
+  });
+</script>
 
 </body>
 </html>

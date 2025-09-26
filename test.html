@@ -1,74 +1,35 @@
-<!--Web Browser-->
-<div class="window" id="firefox-window" data-app="firefox">
-    <!-- Pencere başlığı kısmı -->
-    <div class="window-header">
-        <div class="window-title">
-            <!-- Firefox ikonu ve pencere başlığı -->
-            <i class="fa-brands fa-firefox-browser"></i>
-            <span>Firefox</span>
-        </div>
-        <div class="window-controls">
-            <!-- Pencere kontrol butonları -->
-            <button class="window-btn minimize-btn" title="Minimize">
-                <i class="fas fa-minus"></i> <!-- Küçültme simgesi -->
-            </button>
-            <button class="window-btn maximize-btn" title="Maximize">
-                <i class="fas fa-square"></i> <!-- Tam ekran simgesi -->
-            </button>
-            <button class="window-btn close-btn" title="Close">
-                <i class="fas fa-times"></i> <!-- Kapatma simgesi -->
-            </button>
-        </div>
-    </div>
+<!-- ============================================= -->
+<!--  Fake Search Alanı – Sayfa içinde sahte arama -->
+<!-- ============================================= -->
+<div class="fake-search" style="text-align:center; margin-top:20px;">
+  
+  <!-- 1️⃣ Arama input kutusu -->
+  <!-- 
+       Kullanıcı buraya aramak istediği kelime veya ifadeyi yazacak.
+       id="fakeSearchInput" → JavaScript ile buraya erişip değerini alabiliriz.
+       placeholder="Search..." → Kutuda gri yazı olarak kullanıcıya ipucu gösterir.
+       inline style: padding 8px (iç boşluk), width 250px (genişlik)
+  -->
+  <input type="text" id="fakeSearchInput" placeholder="Search..." style="padding:8px; width:250px;">
 
-    <!-- Pencere içeriği -->
-    <div class="window-content" style="padding: 20px; height: 100%; display: flex; flex-direction: column;">
-        
-        <!-- Arama alanı formu -->
-        <form id="searchForm" style="margin-bottom: 10px; display:flex;">
-            <input 
-                type="text" 
-                id="searchInput" 
-                placeholder="Ara DuckDuckGo'da..." 
-                style="flex:1; padding: 10px; font-size:16px; border-radius:25px; border:1px solid #ccc;"
-            >
-            <!-- Arama butonu -->
-            <button type="submit" 
-                    style="padding:10px 20px; margin-left:5px; font-size:16px; border-radius:25px; border:none; background:#de5833; color:#fff; cursor:pointer;">
-                Ara
-            </button>
-        </form>
+  <!-- 2️⃣ Search butonu -->
+  <!-- 
+       Kullanıcı arama kutusuna bir şey yazdıktan sonra bu butona basacak.
+       id="fakeSearchBtn" → JS ile tıklama olayını yakalayacağız.
+       inline style: padding 8px 12px → dikey 8px, yatay 12px boşluk
+  -->
+  <button id="fakeSearchBtn" style="padding:8px 12px;">Search</button>
 
-        <!-- Arama sonuçlarını gösterecek iframe -->
-        <iframe id="searchResultsFrame" 
-                style="flex:1; width:100%; border:none; display:none;">
-        </iframe>
-        <!--
-            flex:1 → iframe pencerenin kalan alanını doldurur
-            width:100% → yatay olarak tam genişlik
-            border:none → kenarlık yok
-            display:none → başlangıçta görünmez, arama yapılınca gösterilecek
-        -->
-    </div>
+  <!-- 3️⃣ Arama sonuçlarının gösterileceği alan -->
+  <!-- 
+       Kullanıcı arama yaptıktan sonra JS burada sahte sonuçları oluşturacak ve ekleyecek.
+       id="fakeResults" → JS tarafından kolayca erişilebilir.
+       inline style:
+         margin-top:20px → üstten boşluk
+         text-align:left → sonuçlar sola hizalanacak
+         max-width:600px → en fazla 600px genişlik
+         margin-left:auto; margin-right:auto → ortaya hizalar
+  -->
+  <div id="fakeResults" style="margin-top:20px; text-align:left; max-width:600px; margin-left:auto; margin-right:auto;"></div>
 
-    <script>
-        // Form, input ve iframe öğelerini değişkenlere atıyoruz
-        const searchForm = document.getElementById("searchForm");
-        const searchInput = document.getElementById("searchInput");
-        const searchResultsFrame = document.getElementById("searchResultsFrame");
-
-        // Form submit edildiğinde tetiklenecek event
-        searchForm.addEventListener("submit", function(e) {
-            e.preventDefault(); // Sayfanın yenilenmesini engeller
-
-            const query = searchInput.value.trim(); // Kullanıcının girdiği arama sorgusunu alır ve baştaki/sondaki boşlukları siler
-            if (!query) return; // Eğer boşsa hiçbir şey yapma
-
-            // Arama sonuçlarını iframe içinde aç
-            searchResultsFrame.src = "search_results.html?q=" + encodeURIComponent(query);
-            // encodeURIComponent → URL güvenliği için boşluk ve özel karakterleri encode eder
-
-            searchResultsFrame.style.display = "block"; // iframe’i görünür yap
-        });
-    </script>
 </div>
